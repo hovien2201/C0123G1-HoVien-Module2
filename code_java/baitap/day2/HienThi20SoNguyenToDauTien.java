@@ -1,7 +1,7 @@
 package day2;
 
 
-public class HienThiSoNguyen {
+public class HienThi20SoNguyenToDauTien {
     public static void main(String[] args) {
         int n = 20;
         int count = 0;
