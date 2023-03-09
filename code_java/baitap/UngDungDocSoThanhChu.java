@@ -10,173 +10,162 @@ public class UngDungDocSoThanhChu {
         Scanner sc = new Scanner(System.in);
         System.out.println("nhap so de doc");
         so = sc.nextInt();
-        int du=so%100;
-        if (du>9&&du<20){
-            int x=so-du;
-            String a="";
-            String b="";
-            a=duoi1000(x);
-            b=special(du);
-            System.out.println(a+" "+b);
-        }else if(so<10 && so>0){
-            String a="";
-            a=donVi(so);
-            System.out.println(a);
-        }else if (so <20){
-            String a="";
-            a=special(so);
-            System.out.println(a);
-        } else if (so<100) {
-            int x=so%10;
-            int y=so-x;
-            String a="";
-            String b="";
-            b=donVi(x);
-            a=duoi100(y);
-            System.out.println(a+" "+b);
-        } else if (so<1000) {
-            int x=so%10;
-            int y=so%100-x;
-            int z=so-(y+x);
-            String a="";
-            String b="";
-            String c="";
-            a=duoi1000(z);
-            b=duoi100(y);
-            c=donVi(x);
-            System.out.println(a+" "+b+" "+c);
-        }else {
+        int du = so % 100;
+        int x = so % 10;
+        int y = so % 100 - x;
+        if (so == 0) {
+            System.out.println("Zero");
+        } else if (so < 0) {
             System.out.println("out of ability");
+        } else if (so > 999) {
+            System.out.println("out of ability");
+        } else if (du > 9 && du < 20) {
+            int v = so - du;
+            System.out.println(duoi1000(v) + " " + special(du));
+        } else if (so < 10) {
+            System.out.println(donVi(so));
+        } else if (so < 20) {
+            System.out.println(special(so));
+        } else if (so < 100) {
+            System.out.println(duoi100(y) + " " + donVi(x));
+        } else {
+            int z = so - (y + x);
+            System.out.println(duoi1000(z) + " " + duoi100(y) + " " + donVi(x));
         }
     }
-    public static String donVi(int a){
+
+    public static String donVi(int a) {
         String doc = "";
-        switch (a){
+        switch (a) {
             case 1:
-                doc="one";
+                doc = "one";
                 break;
             case 2:
-                doc="two";
+                doc = "two";
                 break;
             case 3:
-                doc="three";
+                doc = "three";
                 break;
             case 4:
-                doc="four";
+                doc = "four";
                 break;
             case 5:
-                doc="five";
+                doc = "five";
                 break;
             case 6:
-                doc="six";
+                doc = "six";
                 break;
             case 7:
-                doc="seven";
+                doc = "seven";
                 break;
             case 8:
-                doc="eight";
+                doc = "eight";
                 break;
             case 9:
-                doc="nine";
+                doc = "nine";
                 break;
         }
         return doc;
     }
-    public static String special(int a){
+
+    public static String special(int a) {
         String doc = "";
-        switch (a){
+        switch (a) {
             case 10:
-                doc="ten";
+                doc = "ten";
                 break;
             case 11:
-                doc="eleven";
+                doc = "eleven";
                 break;
             case 12:
-                doc="twelve";
+                doc = "twelve";
                 break;
             case 13:
-                doc="thirteen";
+                doc = "thirteen";
                 break;
             case 14:
-                doc="fourteen";
+                doc = "fourteen";
                 break;
             case 15:
-                doc="fifteen";
+                doc = "fifteen";
                 break;
             case 16:
-                doc="sixteen";
+                doc = "sixteen";
                 break;
             case 17:
-                doc="seventeen";
+                doc = "seventeen";
                 break;
             case 18:
-                doc="eighteen";
+                doc = "eighteen";
                 break;
             case 19:
-                doc="nineteen";
+                doc = "nineteen";
                 break;
         }
         return doc;
     }
-    public static String duoi100(int a){
+
+    public static String duoi100(int a) {
+
         String doc = "";
-        switch (a){
+        switch (a) {
             case 20:
-                doc="twenty";
+                doc = "twenty";
                 break;
             case 30:
-                doc="thirty";
+                doc = "thirty";
                 break;
             case 40:
-                doc="forty";
+                doc = "forty";
                 break;
             case 50:
-                doc="fifty";
+                doc = "fifty";
                 break;
             case 60:
-                doc="sixty";
+                doc = "sixty";
                 break;
             case 70:
-                doc="seventy";
+                doc = "seventy";
                 break;
             case 80:
-                doc="eighty";
+                doc = "eighty";
                 break;
             case 90:
-                doc="ninety";
+                doc = "ninety";
                 break;
         }
         return doc;
     }
-    public static String duoi1000(int a){
+
+    public static String duoi1000(int a) {
         String doc = "";
-        switch (a){
+        switch (a) {
             case 100:
-                doc="one hundred";
+                doc = "one hundred";
                 break;
             case 200:
-                doc="two hundred";
+                doc = "two hundred";
                 break;
             case 300:
-                doc="three hundred";
+                doc = "three hundred";
                 break;
             case 400:
-                doc="four hundred";
+                doc = "four hundred";
                 break;
             case 500:
-                doc="five hundred";
+                doc = "five hundred";
                 break;
             case 600:
-                doc="six hundred";
+                doc = "six hundred";
                 break;
             case 700:
-                doc="seven hundred";
+                doc = "seven hundred";
                 break;
             case 800:
-                doc="eight hundred";
+                doc = "eight hundred";
                 break;
             case 900:
-                doc="nine hundred";
+                doc = "nine hundred";
                 break;
         }
         return doc;
