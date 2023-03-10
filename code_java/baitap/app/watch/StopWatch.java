@@ -1,7 +1,7 @@
 package app.watch;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.Scanner;
 
 public class StopWatch {
@@ -33,29 +33,44 @@ public class StopWatch {
     public void getElapsedTime() {
         long elaspedTime = (endTime - startTime);
         System.out.println("Số milisecond giây đếm đc:" + elaspedTime);
+        System.out.println("Khoang hon "+elaspedTime/1000+" giay");
     }
 
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nhập 1 để bắt đầu đếm");
-        int a = sc.nextInt();
-        day4.StopWatch stopWatch = new day4.StopWatch();
-        if (a == 1) {
-            stopWatch.start();
-        }
-        System.out.println("Đang đếm thời gian");
-        System.out.println("Nhập 1 để kết thúc đếm");
-        int b = sc.nextInt();
-        if (b == 1) {
-            stopWatch.stop();
-        }
-        stopWatch.getElapsedTime();
+        JFrame jFrame=new JFrame();
+        JButton button=new  JButton("start");
+        JButton button1=new JButton("stop");
+        JPanel jPanel= new JPanel();
+        button.setBounds(100, 150, 100, 50);
+        button1.setBounds(250, 150, 100, 50);
+        jFrame.add(button);
+        jFrame.add(button1);
+        jFrame.setSize(500, 300);// thiết lập kích thước cho của sổ
+        jFrame.setLayout(null);// không sử dụng trình quản lý bố cục
+        jFrame.setVisible(true);// hiển thị cửa sổ
+        app.watch.StopWatch stopWatch = new app.watch.StopWatch(button,jPanel,button1);
+        button.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stopWatch.start();
+                System.out.println("Dang dem thoi gian");
+            }
+                });
+        button1.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stopWatch.stop();
+                stopWatch.getElapsedTime();
+            }
+        });
     }
 
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-        System.exit(0);
+    public StopWatch(JButton startButton, JPanel panel1, JButton endButton) {
+        this.startButton = startButton;
+        this.panel1 = panel1;
+        this.endButton = endButton;
     }
+
 }
