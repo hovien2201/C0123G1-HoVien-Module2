@@ -1,5 +1,7 @@
-package day5;
+package day5.circle;
 
+
+import day5.circle.Circle;
 
 import java.util.Scanner;
 

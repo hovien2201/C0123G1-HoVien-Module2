@@ -1,4 +1,4 @@
-package day5;
+package day5.circle;
 
 public class Circle {
     private static double radius = 1.0;

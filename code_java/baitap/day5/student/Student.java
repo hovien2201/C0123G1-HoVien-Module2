@@ -1,4 +1,4 @@
-package day5;
+package day5.student;
 
 public class Student {
     private String name = "john";
@@ -37,5 +37,4 @@ public class Student {
                 ", classes='" + classes + '\'' +
                 '}';
     }
-
 }

@@ -1,4 +1,6 @@
-package day5;
+package day5.student;
+
+import day5.student.Student;
 
 import java.util.Scanner;
 
