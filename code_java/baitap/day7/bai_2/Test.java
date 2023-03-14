@@ -1,7 +1,7 @@
 package day7.bai_2;
 
 
-public class TextPlay {
+public class Test {
     public static void main(String[] args) {
         Shape[] shape = new Shape[3];
         shape[0] = new Circle();

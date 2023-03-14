@@ -1,7 +1,7 @@
 package day7.bai_1;
 
 
-public class TextPlay {
+public class Test {
     public static void main(String[] args) {
         double x = (double) Math.floor(Math.random() * 100);
         Shape[] shape = new Shape[3];
