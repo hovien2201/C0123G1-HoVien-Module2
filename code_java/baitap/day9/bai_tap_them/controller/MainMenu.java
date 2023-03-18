@@ -37,7 +37,18 @@ public class MainMenu {
                     }
                     break;
                 case 2:
-                    studentService.delete();
+                    System.out.println("Bạn muốn xóa :\n" +
+                            "1:Học viên\n" +
+                            "2:Giáo viên\n" +
+                            "Số khác: không xóa nữa");
+                    int c = Integer.parseInt(scanner.nextLine());
+                    if (c == 1) {
+                        studentService.delete();
+                    } else if (c == 2) {
+                        intructorService.delete();
+                    } else {
+                        System.out.println("Bạn đã không xóa nữa");
+                    }
                     break;
                 case 3:
                     System.out.println("Bạn muốn xem danh sách của ai:\n" +
