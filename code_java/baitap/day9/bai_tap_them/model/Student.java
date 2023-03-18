@@ -2,7 +2,7 @@ package day9.bai_tap_them.model;
 
 import java.util.Date;
 
-public class Student extends Person implements Comparable<Student>{
+public class Student extends Person {
     private String classes;
     private int score;
 
@@ -31,24 +31,19 @@ public class Student extends Person implements Comparable<Student>{
         this.score = score;
     }
 
-    public Student(int id, String name, int dayBirth, String gender, String classes, int score) {
+    public Student(int id, String name, String dayBirth, String gender, String classes, int score) {
         super(id, name, dayBirth, gender);
         this.classes = classes;
         this.score = score;
     }
 
-
-
-    public int compareTo(Student o) {
-        return this.id-o.id;
-    }
-
     @Override
     public String toString() {
         return "Student{" +
-                super.toString()+
+                super.toString() +
                 "classes='" + classes + '\'' +
                 ", score=" + score +
                 '}';
     }
+
 }

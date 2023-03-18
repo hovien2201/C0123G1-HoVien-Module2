@@ -1,10 +1,10 @@
 package day9.bai_tap_them.model;
 
 
-public class Person {
+public abstract class Person {
     protected int id;
     protected String name;
-    protected int dayBirth;
+    protected String dayBirth;
     protected String gender;
 
     public int getId() {
@@ -23,11 +23,11 @@ public class Person {
         this.name = name;
     }
 
-    public int getDayBirth() {
+    public String getDayBirth() {
         return dayBirth;
     }
 
-    public void setDayBirth(int dayBirth) {
+    public void setDayBirth(String dayBirth) {
         this.dayBirth = dayBirth;
     }
 
@@ -42,7 +42,7 @@ public class Person {
     public Person() {
     }
 
-    public Person(int id, String name, int dayBirth, String gender) {
+    public Person(int id, String name, String dayBirth, String gender) {
         this.id = id;
         this.name = name;
         this.dayBirth = dayBirth;
@@ -58,4 +58,5 @@ public class Person {
                 ", gender=" + gender +
                 '}';
     }
+
 }

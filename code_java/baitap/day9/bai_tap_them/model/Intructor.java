@@ -1,8 +1,6 @@
 package day9.bai_tap_them.model;
 
-import java.util.Date;
-
-public class Intructor extends Person{
+public class Intructor extends Person {
     private String teach;
 
     public String getTeach() {
@@ -20,7 +18,7 @@ public class Intructor extends Person{
         this.teach = teach;
     }
 
-    public Intructor(int id, String name, int dayBirth, String gender, String teach) {
+    public Intructor(int id, String name, String dayBirth, String gender, String teach) {
         super(id, name, dayBirth, gender);
         this.teach = teach;
     }
@@ -28,8 +26,9 @@ public class Intructor extends Person{
     @Override
     public String toString() {
         return "Intructor{" +
-                super.toString()+
+                super.toString() +
                 "teach='" + teach +
                 '}';
     }
+
 }
