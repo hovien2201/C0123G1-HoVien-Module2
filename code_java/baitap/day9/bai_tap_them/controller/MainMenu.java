@@ -54,14 +54,14 @@ public class MainMenu {
                     System.out.println("Bạn muốn xem danh sách của ai:\n" +
                             "1:Học viên\n" +
                             "2:Giảng viên\n" +
-                            "3: Cả 2"+
+                            "3: Cả 2" +
                             "số khác: không xem nữa");
                     int b = Integer.parseInt(scanner.nextLine());
                     if (b == 1) {
                         studentService.display();
                     } else if (b == 2) {
                         intructorService.display();
-                    } else if (b==3) {
+                    } else if (b == 3) {
                         studentService.display();
                         intructorService.display();
                     } else {

@@ -35,7 +35,6 @@ public class StudentService implements IService {
             }
         }
         if (count == students.size()) {
-
             System.out.println("NHập tên ");
             String name = scanner.nextLine();
             System.out.println("NHập ngày sinh ");
@@ -45,9 +44,9 @@ public class StudentService implements IService {
             System.out.println("NHập lớp học ");
             String classes = scanner.nextLine();
             System.out.println("NHập nhập điểm ");
-            double ponit = Double.parseDouble(scanner.nextLine());
-            Student student = new Student(id, name, birday, gender, classes, (int) ponit);
-            students.add(student);
+            double score = Double.parseDouble(scanner.nextLine());
+            students.add(new Student(id, name, birday, gender, classes, (int) score));
+            System.out.println("Thêm học sinh thành công");
         }
     }
 

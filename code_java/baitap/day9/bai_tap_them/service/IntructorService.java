@@ -44,8 +44,8 @@ public class IntructorService implements IService {
         String gender = scanner.nextLine();
         System.out.println("NHập lớp môn dạy ");
         String tech = scanner.nextLine();
-        Intructor intructor = new Intructor(id, name, dayBirth, gender, tech);
-        intructors.add(intructor);
+        intructors.add(new Intructor(id, name, dayBirth, gender, tech));
+        System.out.println("Thêm giáo viên thành công");
     }
 
     @Override
