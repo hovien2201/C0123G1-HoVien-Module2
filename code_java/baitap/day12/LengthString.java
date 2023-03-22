@@ -19,7 +19,6 @@ public class LengthString {
                 }
             }
             if (list.size() > linkedList.size()) {
-
                 linkedList.clear();
                 linkedList.addAll(list);
             }
