@@ -1,10 +1,13 @@
 package case_study.controller;
 
+import case_study.service.person.EmployeeService;
+
 import java.util.Scanner;
 
 public class FuramaController {
-    Scanner scanner=new Scanner(System.in);
-    public void displayMainMenu(){
+    public static void displayMainMenu(){
+        Scanner scanner=new Scanner(System.in);
+        EmployeeService employeeService=new EmployeeService();
         boolean flag=true;
         do {
 
@@ -18,11 +21,32 @@ public class FuramaController {
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    System.out.println("Lựa chọn chức năng:\n" +
-                            "1.\tDisplay list employees\n" +
-                            "2.\tAdd new employee\n" +
-                            "3.\tEdit employee`\n" +
-                            "4.\tReturn main menu\n");
+                    boolean flag1=true;
+                    do {
+                        System.out.println("Lựa chọn chức năng:\n" +
+                                "1.\tDisplay list employees\n" +
+                                "2.\tAdd new employee\n" +
+                                "3.\tEdit employee`\n" +
+                                "4.\tReturn main menu\n");
+                        int choice1=Integer.parseInt(scanner.nextLine());
+                        switch (choice1){
+                            case 1:
+                                employeeService.display();
+                                break;
+                            case 2:
+                                employeeService.add();
+                                break;
+                            case 3:
+                                employeeService.edit();
+                                break;
+                            case 4:
+                                System.out.println("Bạn đã quay lại menu chính");
+                                flag1=false;
+                                break;
+                            default:
+                                System.out.println("Bạn đã nhập sai số mời nhập lại");
+                        }
+                    }while (flag1);
                     break;
                 case 2:
                     System.out.println("Lựa chọn chức năng:\n" +

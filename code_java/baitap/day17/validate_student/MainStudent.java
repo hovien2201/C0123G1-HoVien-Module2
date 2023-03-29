@@ -7,10 +7,9 @@ import java.util.Scanner;
 public class MainStudent {
 
     static List<Student> studentList = new ArrayList<>();
-    Student student = new Student();
 
     static {
-        Student student1 = new Student("Vien", "C0123G", "0867561009");
+        Student student1 = new Student("Ho Vien", "C0123G", "0867561009");
         studentList.add(student1);
     }
 

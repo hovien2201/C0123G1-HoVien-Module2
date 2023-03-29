@@ -1,4 +1,4 @@
-package case_study.model;
+package case_study.model.person;
 
 public abstract class Person {
     protected int code;

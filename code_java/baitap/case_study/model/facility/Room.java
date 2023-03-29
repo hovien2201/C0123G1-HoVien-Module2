@@ -1,6 +1,7 @@
-package case_study.model;
+package case_study.model.facility;
 
-public class Room extends Facility{
+
+public class Room extends Facility {
     protected String freeService;
 
     public Room() {
@@ -10,8 +11,8 @@ public class Room extends Facility{
         this.freeService = freeService;
     }
 
-    public Room(String name, int area, int price, int numberHumanMax, String rentalType, String freeService) {
-        super(name, area, price, numberHumanMax, rentalType);
+    public Room(String nameService, int area, int price, int numberHumanMax, String rentalType, String freeService) {
+        super(nameService, area, price, numberHumanMax, rentalType);
         this.freeService = freeService;
     }
 
@@ -27,7 +28,7 @@ public class Room extends Facility{
     public String toString() {
         return "Room{" +
                 "freeService='" + freeService + '\'' +
-                ", name='" + name + '\'' +
+                ", name='" + nameService + '\'' +
                 ", areaAll=" + areaAll +
                 ", price=" + price +
                 ", numberHumanMax=" + numberHumanMax +

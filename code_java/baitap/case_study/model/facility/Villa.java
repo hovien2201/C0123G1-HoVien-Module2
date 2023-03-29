@@ -1,6 +1,7 @@
-package case_study.model;
+package case_study.model.facility;
 
-public class Villa extends Facility{
+
+public class Villa extends Facility {
     private String roomStandard;
     private int areaPool;
     private int NumberRoomVilla;
@@ -14,8 +15,8 @@ public class Villa extends Facility{
         NumberRoomVilla = numberRoomVilla;
     }
 
-    public Villa(String name, int area, int price, int numberHumanMax, String rentalType, String roomStandard, int areaPool, int numberRoomVilla) {
-        super(name, area, price, numberHumanMax, rentalType);
+    public Villa(String nameService, int area, int price, int numberHumanMax, String rentalType, String roomStandard, int areaPool, int numberRoomVilla) {
+        super(nameService, area, price, numberHumanMax, rentalType);
         this.roomStandard = roomStandard;
         this.areaPool = areaPool;
         NumberRoomVilla = numberRoomVilla;
@@ -51,7 +52,7 @@ public class Villa extends Facility{
                 "roomStandard='" + roomStandard + '\'' +
                 ", areaPool=" + areaPool +
                 ", NumberRoomVilla=" + NumberRoomVilla +
-                ", name='" + name + '\'' +
+                ", name='" + nameService + '\'' +
                 ", areaAll=" + areaAll +
                 ", price=" + price +
                 ", numberHumanMax=" + numberHumanMax +

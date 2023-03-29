@@ -1,7 +1,9 @@
 package case_study.view;
 
-public class Main {
-    public static void main(String[] args) {
+import case_study.controller.FuramaController;
 
+public class Main extends FuramaController {
+    public static void main(String[] args) {
+        displayMainMenu();
     }
 }
