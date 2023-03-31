@@ -35,4 +35,7 @@ public class Room extends Facility {
                 ", rentalType='" + rentalType + '\'' +
                 '}';
     }
+    public String getInfoToCSV() {
+        return nameService + "," + areaAll + "," + price + "," + numberHumanMax + "," + rentalType + "," + freeService ;
+    }
 }

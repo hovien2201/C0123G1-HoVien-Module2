@@ -43,4 +43,8 @@ public class Customer extends Person {
                 ", address='" + address + '\'' +
                 '}';
     }
+
+    public String getInfoToCSV() {
+        return code + "," + name + "," + dayBirth + "," + gender + "," + idNumber + "," + phoneNumber + "," + email + "," + typeOfGuest + "," + address;
+    }
 }

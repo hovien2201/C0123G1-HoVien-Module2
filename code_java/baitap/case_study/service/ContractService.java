@@ -1,8 +1,10 @@
 package case_study.service;
 
-import case_study.service.iterface_service.IService;
+import case_study.service.interface_service.IAddService;
+import case_study.service.interface_service.IDisplayService;
+import case_study.service.interface_service.IEditService;
 
-public class ContractService implements IService {
+public class ContractService implements IAddService, IDisplayService, IEditService {
     @Override
     public void add() {
 

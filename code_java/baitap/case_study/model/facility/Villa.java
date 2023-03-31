@@ -4,7 +4,7 @@ package case_study.model.facility;
 public class Villa extends Facility {
     private String roomStandard;
     private int areaPool;
-    private int NumberRoomVilla;
+    private int numberRoomVilla;
 
     public Villa() {
     }
@@ -12,14 +12,14 @@ public class Villa extends Facility {
     public Villa(String roomStandard, int areaPool, int numberRoomVilla) {
         this.roomStandard = roomStandard;
         this.areaPool = areaPool;
-        NumberRoomVilla = numberRoomVilla;
+        this.numberRoomVilla = numberRoomVilla;
     }
 
     public Villa(String nameService, int area, int price, int numberHumanMax, String rentalType, String roomStandard, int areaPool, int numberRoomVilla) {
         super(nameService, area, price, numberHumanMax, rentalType);
         this.roomStandard = roomStandard;
         this.areaPool = areaPool;
-        NumberRoomVilla = numberRoomVilla;
+        this.numberRoomVilla = numberRoomVilla;
     }
 
     public String getRoomStandard() {
@@ -39,11 +39,11 @@ public class Villa extends Facility {
     }
 
     public int getNumberRoomVilla() {
-        return NumberRoomVilla;
+        return numberRoomVilla;
     }
 
     public void setNumberRoomVilla(int numberRoomVilla) {
-        NumberRoomVilla = numberRoomVilla;
+        this.numberRoomVilla = numberRoomVilla;
     }
 
     @Override
@@ -51,12 +51,15 @@ public class Villa extends Facility {
         return "Villa{" +
                 "roomStandard='" + roomStandard + '\'' +
                 ", areaPool=" + areaPool +
-                ", NumberRoomVilla=" + NumberRoomVilla +
+                ", NumberRoomVilla=" + numberRoomVilla +
                 ", name='" + nameService + '\'' +
                 ", areaAll=" + areaAll +
                 ", price=" + price +
                 ", numberHumanMax=" + numberHumanMax +
                 ", rentalType='" + rentalType + '\'' +
                 '}';
+    }
+    public String getInfoToCSV() {
+        return nameService + "," + areaAll + "," + price + "," + numberHumanMax + "," + rentalType + "," + roomStandard + "," +areaPool + "," +numberRoomVilla ;
     }
 }

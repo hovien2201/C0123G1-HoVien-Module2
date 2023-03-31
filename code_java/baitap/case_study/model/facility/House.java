@@ -3,20 +3,20 @@ package case_study.model.facility;
 
 public class House extends Facility {
     private String roomStandard;
-    private int NumberRoomHouse;
+    private int numberRoomHouse;
 
     public House() {
     }
 
     public House(String roomStandard, int numberRoomHouse) {
         this.roomStandard = roomStandard;
-        NumberRoomHouse = numberRoomHouse;
+        this.numberRoomHouse = numberRoomHouse;
     }
 
     public House(String nameService, int area, int price, int numberHumanMax, String rentalType, String roomStandard, int numberRoomHouse) {
         super(nameService, area, price, numberHumanMax, rentalType);
         this.roomStandard = roomStandard;
-        NumberRoomHouse = numberRoomHouse;
+        this.numberRoomHouse = numberRoomHouse;
     }
 
     public String getRoomStandard() {
@@ -28,23 +28,27 @@ public class House extends Facility {
     }
 
     public int getNumberRoomHouse() {
-        return NumberRoomHouse;
+        return numberRoomHouse;
     }
 
     public void setNumberRoomHouse(int numberRoomHouse) {
-        NumberRoomHouse = numberRoomHouse;
+        this.numberRoomHouse = numberRoomHouse;
     }
 
     @Override
     public String toString() {
         return "House{" +
                 "roomStandard='" + roomStandard + '\'' +
-                ", NumberRoomHouse=" + NumberRoomHouse +
+                ", NumberRoomHouse=" + numberRoomHouse +
                 ", name='" + nameService + '\'' +
                 ", areaAll=" + areaAll +
                 ", price=" + price +
                 ", numberHumanMax=" + numberHumanMax +
                 ", rentalType='" + rentalType + '\'' +
                 '}';
+    }
+
+    public String getInfoToCSV() {
+        return nameService + "," + areaAll + "," + price + "," + numberHumanMax + "," + rentalType + "," + roomStandard + "," + numberRoomHouse;
     }
 }

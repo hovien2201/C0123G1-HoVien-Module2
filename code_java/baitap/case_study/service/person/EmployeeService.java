@@ -1,20 +1,46 @@
 package case_study.service.person;
 
 import case_study.model.person.Employee;
-import case_study.service.iterface_service.IService;
+import case_study.repository.person.EmployeeRepository;
+import case_study.service.interface_service.IAddService;
+import case_study.service.interface_service.IDisplayService;
+import case_study.service.interface_service.IEditService;
+import case_study.util.read_wirte.ReadAndWrite;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EmployeeService implements IService {
+public class EmployeeService implements IAddService, IEditService, IDisplayService {
+    EmployeeRepository employeeRepository=new EmployeeRepository();
     Scanner scanner = new Scanner(System.in);
     static List<Employee> employeeList = new ArrayList<>();
+    public void read(){
+        List<Employee> listE=new ArrayList<>();
+        int size= ReadAndWrite.readEmployeeOrCustomer("case_study/util/file/employee.csv").size();
+        List<String> list= ReadAndWrite.readEmployeeOrCustomer("case_study/util/file/employee.csv");
+        for (int i = 0; i < size; i++) {
+            String arr[]=list.get(i).split(",");
+            listE.add(new Employee(Integer.parseInt(arr[0]),arr[1],arr[2],arr[3],Integer.parseInt(arr[4]),Integer.parseInt(arr[5]),arr[6],arr[7],arr[8],Integer.parseInt(arr[9])));
+        }
+        employeeList=listE;
+    }
 
     @Override
     public void add() {
         System.out.println("Mã nhân viên");
-        int code = Integer.parseInt(scanner.nextLine());
+        boolean check;
+        int code;
+        do {
+            check=false;
+            code = Integer.parseInt(scanner.nextLine());
+            for (int i = 0; i < employeeList.size(); i++) {
+                if (code==employeeList.get(i).getCode()){
+                    System.out.println("da co nhap lai");
+                    check=true;
+                }
+            }
+        }while (check);
         System.out.println("Họ tên");
         String name = scanner.nextLine();
         System.out.println("Ngày sinh");
@@ -101,17 +127,19 @@ public class EmployeeService implements IService {
         } while (flag1);
         System.out.println("lương");
         int wage = Integer.parseInt(scanner.nextLine());
-        employeeList.add(new Employee(code, name, dayBirth, gender, idNumber, numberPhone, email, level, location, wage));
+        Employee employee=new Employee(code, name, dayBirth, gender, idNumber, numberPhone, email, level, location, wage);
+        employeeList.add(employee);
         System.out.println("Them thanh cong");
+        employeeRepository.add(employee);
     }
 
     @Override
     public void edit() {
-        System.out.println("Nhap ten muon sua");
-        String name = scanner.nextLine();
-        boolean flag=true;
+        System.out.println("Nhap ma nhan vien sua");
+        int code1 = Integer.parseInt(scanner.nextLine());
+        boolean flag = true;
         for (int i = 0; i < employeeList.size(); i++) {
-            if (name.equals(employeeList.get(i).getName())) {
+            if (code1==employeeList.get(i).getCode()) {
                 System.out.println("Thong tin nhan vien ban muon sua: " + employeeList.get(i));
                 System.out.println("Mã nhân viên");
                 int code = Integer.parseInt(scanner.nextLine());
@@ -201,19 +229,20 @@ public class EmployeeService implements IService {
                 } while (flag2);
                 System.out.println("lương");
                 int wage = Integer.parseInt(scanner.nextLine());
-                employeeList.remove(i);
-                employeeList.add(i, new Employee(code, name1, dayBirth, gender, idNumber, numberPhone, email, level, location, wage));
+                Employee employee=new Employee(code, name1, dayBirth, gender, idNumber, numberPhone, email, level, location, wage);
                 System.out.println("Sua thanh cong");
-                flag=false;
+                employeeRepository.edit(employee,i);
+                flag = false;
             }
         }
-        if (flag){
+        if (flag) {
             System.out.println("khong co trong danh sach");
         }
     }
 
     @Override
     public void display() {
+        read();
         for (Employee e : employeeList) {
             System.out.println(e);
         }

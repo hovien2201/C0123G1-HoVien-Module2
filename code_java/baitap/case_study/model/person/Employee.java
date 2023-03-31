@@ -54,4 +54,8 @@ public class Employee extends Person {
                 ", wage=" + wage +
                 '}';
     }
+
+    public String getInfoToCSV() {
+        return code + "," + name + "," + dayBirth + "," + gender + "," + idNumber + "," + phoneNumber + "," + email + "," + level + "," + location + "," + wage;
+    }
 }
