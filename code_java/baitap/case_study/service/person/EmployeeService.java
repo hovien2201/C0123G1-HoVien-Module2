@@ -18,19 +18,12 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
     static List<Employee> employeeList = new ArrayList<>();
 
     public void read() {
-        List<Employee> listE = new ArrayList<>();
-        int size = ReadAndWrite.readFile("case_study\\util\\file\\employee.csv").size();
-        List<String> list = ReadAndWrite.readFile("case_study\\util\\file\\employee.csv");
-        for (int i = 0; i < size; i++) {
-            String arr[] = list.get(i).split(",");
-            listE.add(new Employee(Integer.parseInt(arr[0]), arr[1], arr[2], arr[3], Integer.parseInt(arr[4]), Integer.parseInt(arr[5]), arr[6], arr[7], arr[8], Integer.parseInt(arr[9])));
-        }
-        employeeList = listE;
+        employeeList=employeeRepository.read();
     }
 
     @Override
     public void add() {
-        System.out.println("Mã nhân viên");
+        System.out.println("Code Employee");
         boolean check;
         int code;
         do {
@@ -38,14 +31,14 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
             code = Integer.parseInt(scanner.nextLine());
             for (int i = 0; i < employeeList.size(); i++) {
                 if (code == employeeList.get(i).getCode()) {
-                    System.out.println("da co nhap lai");
+                    System.out.println("Enter the wrong number, please re-enter");
                     check = true;
                 }
             }
         } while (check);
-        System.out.println("Họ tên");
+        System.out.println("Full name");
         String name = scanner.nextLine();
-        System.out.println("Ngày sinh(dd/mm/yyyy)");
+        System.out.println("Day birth(dd/mm/yyyy)");
         String dayBirth = null;
         boolean flag2 = true;
         do {
@@ -53,22 +46,22 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
             if (CheckRegexAll.checkDayBirth(dayBirth)) {
                 flag2 = false;
             } else {
-                System.out.println("Moi nhap lai");
+                System.out.println("Enter the wrong number, please re-enter");
             }
         } while (flag2);
-        System.out.println("Giới tính");
+        System.out.println("Gender");
         String gender = scanner.nextLine();
-        System.out.println("Số CMND");
+        System.out.println("ID Number");
         int idNumber = Integer.parseInt(scanner.nextLine());
-        System.out.println("Số Điện Thoại");
+        System.out.println("Number phone");
         int numberPhone = Integer.parseInt(scanner.nextLine());
         System.out.println("Email");
         String email = scanner.nextLine();
-        System.out.println("Trình độ");
+        System.out.println("Level");
         boolean flag = true;
         String level = "";
         do {
-            System.out.println("Trình độ:\n" +
+            System.out.println(
                     "1. Trung cấp\n" +
                     "2. Cao đẳng\n" +
                     "3. Đại học\n" +
@@ -92,14 +85,14 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
                     flag = false;
                     break;
                 default:
-                    System.out.println("Bạn đã nhập sai số mời nhập lại");
+                    System.out.println("Enter the wrong number, please re-enter");
             }
         } while (flag);
-        System.out.println("Vị trí");
+        System.out.println("Location:");
         boolean flag1 = true;
         String location = "";
         do {
-            System.out.println("Vị trí:\n" +
+            System.out.print(
                     "1. Lễ tân\n" +
                     "2. phục vụ\n" +
                     "3. chuyên viên\n" +
@@ -133,30 +126,29 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
                     flag1 = false;
                     break;
                 default:
-                    System.out.println("Bạn đã nhập sai số mời nhập lại");
+                    System.out.println("Enter the wrong number, please re-enter");
             }
         } while (flag1);
-        System.out.println("lương");
+        System.out.println("Wage");
         int wage = Integer.parseInt(scanner.nextLine());
         Employee employee = new Employee(code, name, dayBirth, gender, idNumber, numberPhone, email, level, location, wage);
         employeeList.add(employee);
-        System.out.println("Them thanh cong");
+        System.out.println("successfully added new");
         employeeRepository.add(employee);
     }
 
     @Override
     public void edit() {
-        System.out.println("Nhap ma nhan vien sua");
+        read();
+        System.out.println("Code employee edit");
         int code1 = Integer.parseInt(scanner.nextLine());
         boolean flag = true;
         for (int i = 0; i < employeeList.size(); i++) {
             if (code1 == employeeList.get(i).getCode()) {
-                System.out.println("Thong tin nhan vien ban muon sua: " + employeeList.get(i));
-                System.out.println("Mã nhân viên");
-                int code = Integer.parseInt(scanner.nextLine());
-                System.out.println("Họ tên");
+                System.out.println("Employee information you want to edit: " + employeeList.get(i));
+                System.out.println("Full name");
                 String name1 = scanner.nextLine();
-                System.out.println("Ngày sinh (dd/mm/yyyy)");
+                System.out.println("Day birth(dd/mm/yyyy)");
                 String dayBirth = null;
                 boolean flag3 = true;
                 do {
@@ -164,22 +156,22 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
                     if (CheckRegexAll.checkDayBirth(dayBirth)) {
                         flag3 = false;
                     } else {
-                        System.out.println("Moi nhap lai");
+                        System.out.println("Enter the wrong number, please re-enter");
                     }
                 } while (flag3);
-                System.out.println("Giới tính");
+                System.out.println("Gender");
                 String gender = scanner.nextLine();
-                System.out.println("Số CMND");
+                System.out.println("ID Number");
                 int idNumber = Integer.parseInt(scanner.nextLine());
-                System.out.println("Số Điện Thoại");
+                System.out.println("Number phone");
                 int numberPhone = Integer.parseInt(scanner.nextLine());
                 System.out.println("Email");
                 String email = scanner.nextLine();
-                System.out.println("Trình độ");
+                System.out.println("Level:");
                 boolean flag1 = true;
                 String level = "";
                 do {
-                    System.out.println("Trình độ:\n" +
+                    System.out.println(
                             "1. Trung cấp\n" +
                             "2. Cao đẳng\n" +
                             "3. Đại học\n" +
@@ -203,14 +195,14 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
                             flag1 = false;
                             break;
                         default:
-                            System.out.println("Bạn đã nhập sai số mời nhập lại");
+                            System.out.println("Enter the wrong number, please re-enter");
                     }
                 } while (flag1);
-                System.out.println("Vị trí");
+                System.out.println("Location:");
                 boolean flag2 = true;
                 String location = "";
                 do {
-                    System.out.println("Vị trí:\n" +
+                    System.out.print(
                             "1. Lễ tân\n" +
                             "2. phục vụ\n" +
                             "3. chuyên viên\n" +
@@ -244,19 +236,19 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
                             flag2 = false;
                             break;
                         default:
-                            System.out.println("Bạn đã nhập sai số mời nhập lại");
+                            System.out.println("Enter the wrong number, please re-enter");
                     }
                 } while (flag2);
-                System.out.println("lương");
+                System.out.println("Wage");
                 int wage = Integer.parseInt(scanner.nextLine());
-                Employee employee = new Employee(code, name1, dayBirth, gender, idNumber, numberPhone, email, level, location, wage);
-                System.out.println("Sua thanh cong");
+                Employee employee = new Employee(code1, name1, dayBirth, gender, idNumber, numberPhone, email, level, location, wage);
+                System.out.println("successful fix");
                 employeeRepository.edit(employee, i);
                 flag = false;
             }
         }
         if (flag) {
-            System.out.println("khong co trong danh sach");
+            System.out.println("not in the list");
         }
     }
 

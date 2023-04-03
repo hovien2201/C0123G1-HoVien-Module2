@@ -6,7 +6,6 @@ import case_study.service.interface_service.IAddService;
 import case_study.service.interface_service.IDisplayService;
 import case_study.service.interface_service.IEditService;
 import case_study.util.CheckRegexAll;
-import case_study.util.read_wirte.ReadAndWrite;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,16 +17,12 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
     static List<Customer> customerList = new LinkedList<>();
 
     public void read() {
-        int size = ReadAndWrite.readFile("case_study\\util\\file\\customer.csv").size();
-        List<String> list = ReadAndWrite.readFile("case_study\\util\\file\\customer.csv");
-        for (int i = 0; i < size; i++) {
-            String arr[] = list.get(i).split(",");
-            customerList.add(new Customer(Integer.parseInt(arr[0]), arr[1], arr[2], arr[3], Integer.parseInt(arr[4]), Integer.parseInt(arr[5]), arr[6], arr[7], arr[8]));
-        }
+        customerList=customerRepository.read();
     }
 
     @Override
     public void add() {
+        read();
         System.out.println("Mã khách hàng");
         boolean check;
         int code;
@@ -113,11 +108,11 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
         for (int i = 0; i < customerList.size(); i++) {
             if (name.equals(customerList.get(i).getName())) {
                 System.out.println("thong tin khach hang ban muon sua: " + customerList.get(i));
-                System.out.println("Mã khách hàng");
+                System.out.print("Mã khách hàng");
                 int code = Integer.parseInt(scanner.nextLine());
-                System.out.println("Họ tên");
+                System.out.print("Họ tên");
                 String name1 = scanner.nextLine();
-                System.out.println("Ngày sinh(dd/mm/yyyy)");
+                System.out.print("Ngày sinh(dd/mm/yyyy)");
                 String dayBirth = null;
                 boolean flag3 = true;
                 do {
@@ -128,15 +123,15 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
                         System.out.println("Moi nhap lai");
                     }
                 } while (flag3);
-                System.out.println("Giới tính");
+                System.out.print("Giới tính");
                 String gender = scanner.nextLine();
-                System.out.println("Số CMND");
+                System.out.print("Số CMND");
                 int idNumber = Integer.parseInt(scanner.nextLine());
-                System.out.println("Số Điện Thoại");
+                System.out.print("Số Điện Thoại");
                 int numberPhone = Integer.parseInt(scanner.nextLine());
-                System.out.println("Email");
+                System.out.print("Email");
                 String email = scanner.nextLine();
-                System.out.println("Loại khách");
+                System.out.print("Loại khách");
                 boolean flag1 = true;
                 String typeOfGuest = "";
                 do {
@@ -146,6 +141,7 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
                             "3. Gold\n" +
                             "4. Silver\n" +
                             "5. Member");
+                    System.out.print("select function:");
                     String choice = scanner.nextLine();
                     switch (choice) {
                         case "1":
@@ -172,7 +168,7 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
                             System.out.println("Bạn đã nhập sai số mời nhập lại");
                     }
                 } while (flag1);
-                System.out.println("Địa chỉ");
+                System.out.print("Địa chỉ");
                 String address = scanner.nextLine();
                 Customer customer = new Customer(code, name1, dayBirth, gender, idNumber, numberPhone, email, typeOfGuest, address);
                 customerRepository.edit(customer, i);

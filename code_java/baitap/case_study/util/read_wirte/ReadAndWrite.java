@@ -40,10 +40,8 @@ public class ReadAndWrite {
             }
             bufferedReader.close();
             fileReader.close();
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        } catch (IOException o) {
-            o.printStackTrace();
         }
         return stringList;
     }

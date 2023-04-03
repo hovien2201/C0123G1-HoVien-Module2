@@ -8,10 +8,8 @@ import case_study.service.interface_service.IDisplayMaintenance;
 import case_study.service.interface_service.IDisplayService;
 import case_study.service.interface_service.IReadHouse;
 import case_study.util.CheckRegexAll;
-import case_study.util.read_wirte.ReadAndWrite;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -63,7 +61,7 @@ public class HouseService implements IAddService, IDisplayService, IDisplayMaint
         do {
             price = scanner.nextLine();
             if (CheckRegexAll.checkPriceAndNumberOfFloors(price)) {
-                flag4 = true;
+                flag4 = false;
             } else {
                 System.out.println("Moi nhap lai");
             }
@@ -74,7 +72,7 @@ public class HouseService implements IAddService, IDisplayService, IDisplayMaint
         do {
             numberHumanMax = scanner.nextLine();
             if (CheckRegexAll.checkNumberHumanMax(numberHumanMax)) {
-                flag7 = true;
+                flag7 = false;
             } else {
                 System.out.println("Moi nhap lai");
             }
@@ -122,7 +120,7 @@ public class HouseService implements IAddService, IDisplayService, IDisplayMaint
         do {
             numberOfFloors = scanner.nextLine();
             if (CheckRegexAll.checkPriceAndNumberOfFloors(numberOfFloors)) {
-                flag5 = true;
+                flag5 = false;
             } else {
                 System.out.println("Moi nhap lai");
             }
@@ -145,14 +143,7 @@ public class HouseService implements IAddService, IDisplayService, IDisplayMaint
 
     @Override
     public Map<House, Integer> readHouse() {
-        Map<House, Integer> houseIntegerMap = new LinkedHashMap<>();
-        int size = ReadAndWrite.readFile(PATH).size();
-        List<String> list = ReadAndWrite.readFile(PATH);
-        for (int i = 0; i < size; i++) {
-            String[] arr = list.get(i).split(",");
-            houseIntegerMap.put(new House(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7]), Integer.parseInt(arr[8]));
-        }
-        houseServiceMap = houseIntegerMap;
+        houseServiceMap=houseRepository.readHouse();
         return houseServiceMap;
     }
 }

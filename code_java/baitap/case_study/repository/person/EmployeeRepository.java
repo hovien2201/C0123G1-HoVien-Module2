@@ -4,22 +4,15 @@ import case_study.model.person.Employee;
 import case_study.repository.interface_repository.IEmployeeRepository;
 import case_study.util.read_wirte.ReadAndWrite;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeRepository implements IEmployeeRepository {
     private final String PATH = "case_study/util/file/employee.csv";
-
     @Override
     public void add(Employee employee) {
-        List<String> stringList = ReadAndWrite.readFile(PATH);
-        stringList.add(employee.getInfoToCSV());
-        for (int i = 0; i < stringList.size(); i++) {
-            if (i == 0) {
-                ReadAndWrite.writeFile(PATH, stringList.get(i), false);
-            } else {
-                ReadAndWrite.writeFile(PATH, stringList.get(i), true);
-            }
-        }
+        String str=employee.getInfoToCSV();
+        ReadAndWrite.writeFile(PATH, str, true);
     }
 
     @Override
@@ -33,5 +26,16 @@ public class EmployeeRepository implements IEmployeeRepository {
                 ReadAndWrite.writeFile(PATH, stringList.get(j), true);
             }
         }
+    }
+
+    @Override
+    public List<Employee> read() {
+        List<Employee> listE = new ArrayList<>();
+        List<String> list = ReadAndWrite.readFile("case_study\\util\\file\\employee.csv");
+        for (int i = 0; i < list.size(); i++) {
+            String arr[] = list.get(i).split(",");
+            listE.add(new Employee(Integer.parseInt(arr[0]), arr[1], arr[2], arr[3], Integer.parseInt(arr[4]), Integer.parseInt(arr[5]), arr[6], arr[7], arr[8], Integer.parseInt(arr[9])));
+        }
+        return listE;
     }
 }

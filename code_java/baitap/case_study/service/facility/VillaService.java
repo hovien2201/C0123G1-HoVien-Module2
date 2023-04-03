@@ -4,25 +4,21 @@ package case_study.service.facility;
 import case_study.model.facility.Villa;
 import case_study.repository.facility.VillaRepository;
 import case_study.service.interface_service.IAddService;
-import case_study.service.interface_service.IDisplayMaintenance;
-import case_study.service.interface_service.IDisplayService;
 import case_study.service.interface_service.IReadVilla;
 import case_study.util.CheckRegexAll;
-import case_study.util.read_wirte.ReadAndWrite;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class VillaService implements IAddService, IReadVilla, IDisplayService, IDisplayMaintenance {
-    private final String PATH = "case_study\\util\\file\\villa.csv";
+public class VillaService implements IAddService, IReadVilla {
     Scanner scanner = new Scanner(System.in);
     static Map<Villa, Integer> villaServiceMap = new LinkedHashMap<>();
     VillaRepository villaRepository = new VillaRepository();
 
     @Override
     public void add() {
+        readVilla();
         System.out.println("Nhap ma dich vu(SVVL-XXXX)");
         boolean flag1 = true;
         String id = null;
@@ -62,7 +58,7 @@ public class VillaService implements IAddService, IReadVilla, IDisplayService, I
         do {
             price = scanner.nextLine();
             if (CheckRegexAll.checkPriceAndNumberOfFloors(price)) {
-                flag4 = true;
+                flag4 = false;
             } else {
                 System.out.println("Moi nhap lai");
             }
@@ -73,7 +69,7 @@ public class VillaService implements IAddService, IReadVilla, IDisplayService, I
         do {
             numberHumanMax = scanner.nextLine();
             if (CheckRegexAll.checkNumberHumanMax(numberHumanMax)) {
-                flag7 = true;
+                flag7 = false;
             } else {
                 System.out.println("Moi nhap lai");
             }
@@ -132,7 +128,7 @@ public class VillaService implements IAddService, IReadVilla, IDisplayService, I
         do {
             numberOfFloors = scanner.nextLine();
             if (CheckRegexAll.checkPriceAndNumberOfFloors(numberOfFloors)) {
-                flag6 = true;
+                flag6 = false;
             } else {
                 System.out.println("Moi nhap lai");
             }
@@ -145,25 +141,8 @@ public class VillaService implements IAddService, IReadVilla, IDisplayService, I
     }
 
     @Override
-    public void displayMaintenance() {
-
-    }
-
-    @Override
-    public void display() {
-
-    }
-
-    @Override
     public Map<Villa, Integer> readVilla() {
-        Map<Villa, Integer> villaIntegerMap = new LinkedHashMap<>();
-        int size = ReadAndWrite.readFile(PATH).size();
-        List<String> list = ReadAndWrite.readFile(PATH);
-        for (int i = 0; i < size; i++) {
-            String[] arr = list.get(i).split(",");
-            villaIntegerMap.put(new Villa(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8]), Integer.parseInt(arr[9]));
-        }
-        villaServiceMap = villaIntegerMap;
+        villaServiceMap=villaRepository.readVilla();
         return villaServiceMap;
     }
 }

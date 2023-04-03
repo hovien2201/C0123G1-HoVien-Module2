@@ -28,6 +28,7 @@ public class FacilityService implements IAddService, IDisplayService, IDisplayMa
                     "2.\tAdd New House\n" +
                     "3.\tAdd New Room\n" +
                     "4.\tBack to menu\n");
+            System.out.print("select function:");
             String choice3 = scanner.nextLine();
             switch (choice3) {
                 case "1":
@@ -43,11 +44,11 @@ public class FacilityService implements IAddService, IDisplayService, IDisplayMa
                     flag4 = false;
                     break;
                 case "4":
-                    System.out.println("Quay lai menu");
+                    System.out.println("back to main menu");
                     flag4 = false;
                     break;
                 default:
-                    System.out.println("chon lai");
+                    System.out.println("Enter the wrong number, please re-enter");
             }
         } while (flag4);
     }

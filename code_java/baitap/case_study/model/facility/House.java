@@ -39,14 +39,14 @@ public class House extends Facility {
     @Override
     public String toString() {
         return "House{" +
-                "roomStandard='" + roomStandard + '\'' +
-                ", numberOfFloors=" + numberOfFloors +
                 ", id='" + id + '\'' +
                 ", nameService='" + nameService + '\'' +
                 ", areaAll=" + areaAll +
                 ", price=" + price +
                 ", numberHumanMax=" + numberHumanMax +
                 ", rentalType='" + rentalType + '\'' +
+                ", roomStandard='" + roomStandard + '\'' +
+                ", numberOfFloors=" + numberOfFloors +
                 '}';
     }
 
