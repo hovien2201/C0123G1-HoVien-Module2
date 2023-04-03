@@ -1,18 +1,20 @@
 package case_study.model.facility;
 
 public abstract class Facility {
+    protected String id;
     protected String nameService;
-    protected int areaAll;
-    protected int price;
-    protected int numberHumanMax;
+    protected String areaAll;
+    protected String price;
+    protected String numberHumanMax;
     protected String rentalType;
 
     public Facility() {
     }
 
-    public Facility(String name, int area, int price, int numberHumanMax, String rentalType) {
-        this.nameService = name;
-        this.areaAll = area;
+    public Facility(String id, String nameService, String areaAll, String price, String numberHumanMax, String rentalType) {
+        this.id = id;
+        this.nameService = nameService;
+        this.areaAll = areaAll;
         this.price = price;
         this.numberHumanMax = numberHumanMax;
         this.rentalType = rentalType;
@@ -26,27 +28,19 @@ public abstract class Facility {
         this.nameService = nameService;
     }
 
-    public int getArea() {
-        return areaAll;
-    }
-
-    public void setArea(int area) {
-        this.areaAll = area;
-    }
-
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public int getNumberHumanMax() {
+    public String getNumberHumanMax() {
         return numberHumanMax;
     }
 
-    public void setNumberHumanMax(int numberHumanMax) {
+    public void setNumberHumanMax(String numberHumanMax) {
         this.numberHumanMax = numberHumanMax;
     }
 
@@ -58,10 +52,27 @@ public abstract class Facility {
         this.rentalType = rentalType;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getAreaAll() {
+        return areaAll;
+    }
+
+    public void setAreaAll(String areaAll) {
+        this.areaAll = areaAll;
+    }
+
     @Override
     public String toString() {
         return "Facility{" +
-                "name='" + nameService + '\'' +
+                "id='" + id + '\'' +
+                ", nameService='" + nameService + '\'' +
                 ", areaAll=" + areaAll +
                 ", price=" + price +
                 ", numberHumanMax=" + numberHumanMax +
@@ -69,4 +80,7 @@ public abstract class Facility {
                 '}';
     }
 
+    public String getInfoToCSV() {
+        return id + "," + nameService + "," + areaAll + "," + price + "," + numberHumanMax + "," + rentalType;
+    }
 }

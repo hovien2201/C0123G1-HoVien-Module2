@@ -3,23 +3,23 @@ package case_study.model.facility;
 
 public class Villa extends Facility {
     private String roomStandard;
-    private int areaPool;
-    private int numberRoomVilla;
+    private String areaPool;
+    private String numberOfFloors;
 
     public Villa() {
     }
 
-    public Villa(String roomStandard, int areaPool, int numberRoomVilla) {
+    public Villa(String roomStandard, String areaPool, String numberRoomVilla) {
         this.roomStandard = roomStandard;
         this.areaPool = areaPool;
-        this.numberRoomVilla = numberRoomVilla;
+        this.numberOfFloors = numberRoomVilla;
     }
 
-    public Villa(String nameService, int area, int price, int numberHumanMax, String rentalType, String roomStandard, int areaPool, int numberRoomVilla) {
-        super(nameService, area, price, numberHumanMax, rentalType);
+    public Villa(String id, String nameService, String areaAll, String price, String numberHumanMax, String rentalType, String roomStandard, String areaPool, String numberOfFloors) {
+        super(id, nameService, areaAll, price, numberHumanMax, rentalType);
         this.roomStandard = roomStandard;
         this.areaPool = areaPool;
-        this.numberRoomVilla = numberRoomVilla;
+        this.numberOfFloors = numberOfFloors;
     }
 
     public String getRoomStandard() {
@@ -30,20 +30,20 @@ public class Villa extends Facility {
         this.roomStandard = roomStandard;
     }
 
-    public int getAreaPool() {
+    public String getAreaPool() {
         return areaPool;
     }
 
-    public void setAreaPool(int areaPool) {
+    public void setAreaPool(String areaPool) {
         this.areaPool = areaPool;
     }
 
-    public int getNumberRoomVilla() {
-        return numberRoomVilla;
+    public String getNumberOfFloors() {
+        return numberOfFloors;
     }
 
-    public void setNumberRoomVilla(int numberRoomVilla) {
-        this.numberRoomVilla = numberRoomVilla;
+    public void setNumberOfFloors(String numberOfFloors) {
+        this.numberOfFloors = numberOfFloors;
     }
 
     @Override
@@ -51,15 +51,18 @@ public class Villa extends Facility {
         return "Villa{" +
                 "roomStandard='" + roomStandard + '\'' +
                 ", areaPool=" + areaPool +
-                ", NumberRoomVilla=" + numberRoomVilla +
-                ", name='" + nameService + '\'' +
+                ", numberOfFloors=" + numberOfFloors +
+                ", id='" + id + '\'' +
+                ", nameService='" + nameService + '\'' +
                 ", areaAll=" + areaAll +
                 ", price=" + price +
                 ", numberHumanMax=" + numberHumanMax +
                 ", rentalType='" + rentalType + '\'' +
                 '}';
     }
+
+    @Override
     public String getInfoToCSV() {
-        return nameService + "," + areaAll + "," + price + "," + numberHumanMax + "," + rentalType + "," + roomStandard + "," +areaPool + "," +numberRoomVilla ;
+        return id + "," + nameService + "," + areaAll + "," + price + "," + numberHumanMax + "," + rentalType + "," + roomStandard + "," + areaPool + "," + numberOfFloors;
     }
 }

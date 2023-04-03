@@ -5,6 +5,7 @@ import case_study.repository.person.CustomerRepository;
 import case_study.service.interface_service.IAddService;
 import case_study.service.interface_service.IDisplayService;
 import case_study.service.interface_service.IEditService;
+import case_study.util.CheckRegexAll;
 import case_study.util.read_wirte.ReadAndWrite;
 
 import java.util.LinkedList;
@@ -17,8 +18,8 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
     static List<Customer> customerList = new LinkedList<>();
 
     public void read() {
-        int size = ReadAndWrite.readEmployeeOrCustomer("case_study\\util\\file\\customer.csv").size();
-        List<String> list = ReadAndWrite.readEmployeeOrCustomer("case_study\\util\\file\\customer.csv");
+        int size = ReadAndWrite.readFile("case_study\\util\\file\\customer.csv").size();
+        List<String> list = ReadAndWrite.readFile("case_study\\util\\file\\customer.csv");
         for (int i = 0; i < size; i++) {
             String arr[] = list.get(i).split(",");
             customerList.add(new Customer(Integer.parseInt(arr[0]), arr[1], arr[2], arr[3], Integer.parseInt(arr[4]), Integer.parseInt(arr[5]), arr[6], arr[7], arr[8]));
@@ -42,8 +43,17 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
         } while (check);
         System.out.println("Họ tên");
         String name = scanner.nextLine();
-        System.out.println("Ngày sinh");
-        String dayBirth = scanner.nextLine();
+        System.out.println("Ngày sinh(dd/mm/yyyy)");
+        String dayBirth = null;
+        boolean flag1 = true;
+        do {
+            dayBirth = scanner.nextLine();
+            if (CheckRegexAll.checkDayBirth(dayBirth)) {
+                flag1 = false;
+            } else {
+                System.out.println("moi nhap lai");
+            }
+        } while (flag1);
         System.out.println("Giới tính");
         String gender = scanner.nextLine();
         System.out.println("Số CMND");
@@ -107,8 +117,17 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
                 int code = Integer.parseInt(scanner.nextLine());
                 System.out.println("Họ tên");
                 String name1 = scanner.nextLine();
-                System.out.println("Ngày sinh");
-                String dayBirth = scanner.nextLine();
+                System.out.println("Ngày sinh(dd/mm/yyyy)");
+                String dayBirth = null;
+                boolean flag3 = true;
+                do {
+                    dayBirth = scanner.nextLine();
+                    if (CheckRegexAll.checkDayBirth(dayBirth)) {
+                        flag3 = false;
+                    } else {
+                        System.out.println("Moi nhap lai");
+                    }
+                } while (flag3);
                 System.out.println("Giới tính");
                 String gender = scanner.nextLine();
                 System.out.println("Số CMND");

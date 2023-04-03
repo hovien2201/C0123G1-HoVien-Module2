@@ -5,6 +5,7 @@ import case_study.repository.person.EmployeeRepository;
 import case_study.service.interface_service.IAddService;
 import case_study.service.interface_service.IDisplayService;
 import case_study.service.interface_service.IEditService;
+import case_study.util.CheckRegexAll;
 import case_study.util.read_wirte.ReadAndWrite;
 
 import java.util.ArrayList;
@@ -12,18 +13,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeService implements IAddService, IEditService, IDisplayService {
-    EmployeeRepository employeeRepository=new EmployeeRepository();
+    EmployeeRepository employeeRepository = new EmployeeRepository();
     Scanner scanner = new Scanner(System.in);
     static List<Employee> employeeList = new ArrayList<>();
-    public void read(){
-        List<Employee> listE=new ArrayList<>();
-        int size= ReadAndWrite.readEmployeeOrCustomer("case_study/util/file/employee.csv").size();
-        List<String> list= ReadAndWrite.readEmployeeOrCustomer("case_study/util/file/employee.csv");
+
+    public void read() {
+        List<Employee> listE = new ArrayList<>();
+        int size = ReadAndWrite.readFile("case_study\\util\\file\\employee.csv").size();
+        List<String> list = ReadAndWrite.readFile("case_study\\util\\file\\employee.csv");
         for (int i = 0; i < size; i++) {
-            String arr[]=list.get(i).split(",");
-            listE.add(new Employee(Integer.parseInt(arr[0]),arr[1],arr[2],arr[3],Integer.parseInt(arr[4]),Integer.parseInt(arr[5]),arr[6],arr[7],arr[8],Integer.parseInt(arr[9])));
+            String arr[] = list.get(i).split(",");
+            listE.add(new Employee(Integer.parseInt(arr[0]), arr[1], arr[2], arr[3], Integer.parseInt(arr[4]), Integer.parseInt(arr[5]), arr[6], arr[7], arr[8], Integer.parseInt(arr[9])));
         }
-        employeeList=listE;
+        employeeList = listE;
     }
 
     @Override
@@ -32,19 +34,28 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
         boolean check;
         int code;
         do {
-            check=false;
+            check = false;
             code = Integer.parseInt(scanner.nextLine());
             for (int i = 0; i < employeeList.size(); i++) {
-                if (code==employeeList.get(i).getCode()){
+                if (code == employeeList.get(i).getCode()) {
                     System.out.println("da co nhap lai");
-                    check=true;
+                    check = true;
                 }
             }
-        }while (check);
+        } while (check);
         System.out.println("Họ tên");
         String name = scanner.nextLine();
-        System.out.println("Ngày sinh");
-        String dayBirth = scanner.nextLine();
+        System.out.println("Ngày sinh(dd/mm/yyyy)");
+        String dayBirth = null;
+        boolean flag2 = true;
+        do {
+            dayBirth = scanner.nextLine();
+            if (CheckRegexAll.checkDayBirth(dayBirth)) {
+                flag2 = false;
+            } else {
+                System.out.println("Moi nhap lai");
+            }
+        } while (flag2);
         System.out.println("Giới tính");
         String gender = scanner.nextLine();
         System.out.println("Số CMND");
@@ -127,7 +138,7 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
         } while (flag1);
         System.out.println("lương");
         int wage = Integer.parseInt(scanner.nextLine());
-        Employee employee=new Employee(code, name, dayBirth, gender, idNumber, numberPhone, email, level, location, wage);
+        Employee employee = new Employee(code, name, dayBirth, gender, idNumber, numberPhone, email, level, location, wage);
         employeeList.add(employee);
         System.out.println("Them thanh cong");
         employeeRepository.add(employee);
@@ -139,14 +150,23 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
         int code1 = Integer.parseInt(scanner.nextLine());
         boolean flag = true;
         for (int i = 0; i < employeeList.size(); i++) {
-            if (code1==employeeList.get(i).getCode()) {
+            if (code1 == employeeList.get(i).getCode()) {
                 System.out.println("Thong tin nhan vien ban muon sua: " + employeeList.get(i));
                 System.out.println("Mã nhân viên");
                 int code = Integer.parseInt(scanner.nextLine());
                 System.out.println("Họ tên");
                 String name1 = scanner.nextLine();
-                System.out.println("Ngày sinh");
-                String dayBirth = scanner.nextLine();
+                System.out.println("Ngày sinh (dd/mm/yyyy)");
+                String dayBirth = null;
+                boolean flag3 = true;
+                do {
+                    dayBirth = scanner.nextLine();
+                    if (CheckRegexAll.checkDayBirth(dayBirth)) {
+                        flag3 = false;
+                    } else {
+                        System.out.println("Moi nhap lai");
+                    }
+                } while (flag3);
                 System.out.println("Giới tính");
                 String gender = scanner.nextLine();
                 System.out.println("Số CMND");
@@ -229,9 +249,9 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
                 } while (flag2);
                 System.out.println("lương");
                 int wage = Integer.parseInt(scanner.nextLine());
-                Employee employee=new Employee(code, name1, dayBirth, gender, idNumber, numberPhone, email, level, location, wage);
+                Employee employee = new Employee(code, name1, dayBirth, gender, idNumber, numberPhone, email, level, location, wage);
                 System.out.println("Sua thanh cong");
-                employeeRepository.edit(employee,i);
+                employeeRepository.edit(employee, i);
                 flag = false;
             }
         }

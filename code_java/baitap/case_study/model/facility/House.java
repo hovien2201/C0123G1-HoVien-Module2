@@ -3,21 +3,22 @@ package case_study.model.facility;
 
 public class House extends Facility {
     private String roomStandard;
-    private int numberRoomHouse;
+    private String numberOfFloors;
 
     public House() {
     }
 
-    public House(String roomStandard, int numberRoomHouse) {
+    public House(String roomStandard, String numberOfFloors) {
         this.roomStandard = roomStandard;
-        this.numberRoomHouse = numberRoomHouse;
+        this.numberOfFloors = numberOfFloors;
     }
 
-    public House(String nameService, int area, int price, int numberHumanMax, String rentalType, String roomStandard, int numberRoomHouse) {
-        super(nameService, area, price, numberHumanMax, rentalType);
+    public House(String id, String nameService, String areaAll, String price, String numberHumanMax, String rentalType, String roomStandard, String numberOfFloors) {
+        super(id, nameService, areaAll, price, numberHumanMax, rentalType);
         this.roomStandard = roomStandard;
-        this.numberRoomHouse = numberRoomHouse;
+        this.numberOfFloors = numberOfFloors;
     }
+
 
     public String getRoomStandard() {
         return roomStandard;
@@ -27,20 +28,21 @@ public class House extends Facility {
         this.roomStandard = roomStandard;
     }
 
-    public int getNumberRoomHouse() {
-        return numberRoomHouse;
+    public String getNumberRoomHouse() {
+        return numberOfFloors;
     }
 
-    public void setNumberRoomHouse(int numberRoomHouse) {
-        this.numberRoomHouse = numberRoomHouse;
+    public void setNumberRoomHouse(String numberOfFloors) {
+        this.numberOfFloors = numberOfFloors;
     }
 
     @Override
     public String toString() {
         return "House{" +
                 "roomStandard='" + roomStandard + '\'' +
-                ", NumberRoomHouse=" + numberRoomHouse +
-                ", name='" + nameService + '\'' +
+                ", numberOfFloors=" + numberOfFloors +
+                ", id='" + id + '\'' +
+                ", nameService='" + nameService + '\'' +
                 ", areaAll=" + areaAll +
                 ", price=" + price +
                 ", numberHumanMax=" + numberHumanMax +
@@ -48,7 +50,8 @@ public class House extends Facility {
                 '}';
     }
 
+    @Override
     public String getInfoToCSV() {
-        return nameService + "," + areaAll + "," + price + "," + numberHumanMax + "," + rentalType + "," + roomStandard + "," + numberRoomHouse;
+        return id + "," + nameService + "," + areaAll + "," + price + "," + numberHumanMax + "," + rentalType + "," + roomStandard + "," + numberOfFloors;
     }
 }
