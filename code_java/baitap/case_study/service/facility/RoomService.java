@@ -27,7 +27,7 @@ public class RoomService implements  IAddService, IReadRoom {
                 System.out.println("Enter the wrong number, please re-enter");
             }
         } while (flag1);
-        System.out.println("service name(Vietnameseize the first letter)");
+        System.out.println("service name(Capitalize first letter)");
         boolean flag2 = true;
         String nameService = null;
         do {

@@ -1,30 +1,44 @@
 package case_study.model;
 
-public class Booking {
-    private int codeBooking;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Booking implements Comparable<Booking> {
+    private String codeClient;
+    private String codeService;
+    private String codeBooking;
     private String dayStart;
     private String dayEnd;
-    private int codeClient;
     private String nameService;
     private String typeOfService;
 
     public Booking() {
     }
 
-    public Booking(int codeBooking, String dayStart, String dayEnd, int codeClient, String nameService, String typeOfService) {
+    public Booking(String codeClient, String codeService, String codeBooking, String dayStart, String dayEnd, String nameService, String typeOfService) {
+        this.codeClient = codeClient;
+        this.codeService = codeService;
         this.codeBooking = codeBooking;
         this.dayStart = dayStart;
         this.dayEnd = dayEnd;
-        this.codeClient = codeClient;
         this.nameService = nameService;
         this.typeOfService = typeOfService;
     }
 
-    public int getCodeBooking() {
+    public String getCodeService() {
+        return codeService;
+    }
+
+    public void setCodeService(String codeService) {
+        this.codeService = codeService;
+    }
+
+    public String getCodeBooking() {
         return codeBooking;
     }
 
-    public void setCodeBooking(int codeBooking) {
+    public void setCodeBooking(String codeBooking) {
         this.codeBooking = codeBooking;
     }
 
@@ -44,11 +58,11 @@ public class Booking {
         this.dayEnd = dayEnd;
     }
 
-    public int getCodeClient() {
+    public String getCodeClient() {
         return codeClient;
     }
 
-    public void setCodeClient(int codeClient) {
+    public void setCodeClient(String codeClient) {
         this.codeClient = codeClient;
     }
 
@@ -71,12 +85,27 @@ public class Booking {
     @Override
     public String toString() {
         return "Booking{" +
-                "codeBooking=" + codeBooking +
+                "codeClient='" + codeClient + '\'' +
+                ", codeService='" + codeService + '\'' +
+                ", codeBooking='" + codeBooking + '\'' +
                 ", dayStart='" + dayStart + '\'' +
                 ", dayEnd='" + dayEnd + '\'' +
-                ", codeClient=" + codeClient +
                 ", nameService='" + nameService + '\'' +
                 ", typeOfService='" + typeOfService + '\'' +
                 '}';
     }
+
+    public String getInfoToCSV() {
+        return codeClient + "," + codeService + "," + codeBooking + "," + dayStart + "," + dayEnd + "," + nameService + "," + typeOfService;
+    }
+
+    @Override
+    public int compareTo(Booking o) {
+        if (this.dayStart.compareTo(o.dayStart) != 0) {
+            return this.dayStart.compareTo(o.dayStart);
+        } else {
+            return this.dayEnd.compareTo(o.dayEnd);
+        }
+    }
+
 }

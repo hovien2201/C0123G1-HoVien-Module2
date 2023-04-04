@@ -13,16 +13,8 @@ public class RoomRepository implements IRoomRepository {
 
     @Override
     public void add(Room room, Integer value) {
-        List<String> stringList = ReadAndWrite.readFile(PATH);
-        String str = room.getInfoToCSV();
-        stringList.add(str + "," + value);
-        for (int i = 0; i < stringList.size(); i++) {
-            if (i == 0) {
-                ReadAndWrite.writeFile(PATH, stringList.get(i), false);
-            } else {
-                ReadAndWrite.writeFile(PATH, stringList.get(i), true);
-            }
-        }
+        String str = room.getInfoToCSV() + "," + value;
+        ReadAndWrite.writeFile(PATH, str, true);
     }
 
     @Override

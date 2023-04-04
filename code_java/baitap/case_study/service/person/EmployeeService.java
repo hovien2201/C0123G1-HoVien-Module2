@@ -6,7 +6,6 @@ import case_study.service.interface_service.IAddService;
 import case_study.service.interface_service.IDisplayService;
 import case_study.service.interface_service.IEditService;
 import case_study.util.CheckRegexAll;
-import case_study.util.read_wirte.ReadAndWrite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +17,17 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
     static List<Employee> employeeList = new ArrayList<>();
 
     public void read() {
-        employeeList=employeeRepository.read();
+        employeeList = employeeRepository.read();
     }
 
     @Override
     public void add() {
         System.out.println("Code Employee");
         boolean check;
-        int code;
+        String code;
         do {
             check = false;
-            code = Integer.parseInt(scanner.nextLine());
+            code = scanner.nextLine();
             for (int i = 0; i < employeeList.size(); i++) {
                 if (code == employeeList.get(i).getCode()) {
                     System.out.println("Enter the wrong number, please re-enter");
@@ -63,9 +62,9 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
         do {
             System.out.println(
                     "1. Trung cấp\n" +
-                    "2. Cao đẳng\n" +
-                    "3. Đại học\n" +
-                    "4. Sau Đại học");
+                            "2. Cao đẳng\n" +
+                            "3. Đại học\n" +
+                            "4. Sau Đại học");
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
@@ -94,11 +93,11 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
         do {
             System.out.print(
                     "1. Lễ tân\n" +
-                    "2. phục vụ\n" +
-                    "3. chuyên viên\n" +
-                    "4. giám sát\n" +
-                    "5. quản lý\n" +
-                    "6. giám đốc");
+                            "2. phục vụ\n" +
+                            "3. chuyên viên\n" +
+                            "4. giám sát\n" +
+                            "5. quản lý\n" +
+                            "6. giám đốc");
             String choice1 = scanner.nextLine();
             switch (choice1) {
                 case "1":
@@ -141,7 +140,7 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
     public void edit() {
         read();
         System.out.println("Code employee edit");
-        int code1 = Integer.parseInt(scanner.nextLine());
+        String code1 = scanner.nextLine();
         boolean flag = true;
         for (int i = 0; i < employeeList.size(); i++) {
             if (code1 == employeeList.get(i).getCode()) {
@@ -173,9 +172,9 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
                 do {
                     System.out.println(
                             "1. Trung cấp\n" +
-                            "2. Cao đẳng\n" +
-                            "3. Đại học\n" +
-                            "4. Sau Đại học");
+                                    "2. Cao đẳng\n" +
+                                    "3. Đại học\n" +
+                                    "4. Sau Đại học");
                     String choice = scanner.nextLine();
                     switch (choice) {
                         case "1":
@@ -204,11 +203,11 @@ public class EmployeeService implements IAddService, IEditService, IDisplayServi
                 do {
                     System.out.print(
                             "1. Lễ tân\n" +
-                            "2. phục vụ\n" +
-                            "3. chuyên viên\n" +
-                            "4. giám sát\n" +
-                            "5. quản lý\n" +
-                            "6. giám đốc");
+                                    "2. phục vụ\n" +
+                                    "3. chuyên viên\n" +
+                                    "4. giám sát\n" +
+                                    "5. quản lý\n" +
+                                    "6. giám đốc");
                     String choice1 = scanner.nextLine();
                     switch (choice1) {
                         case "1":

@@ -1,7 +1,7 @@
 package case_study.model.person;
 
 public abstract class Person {
-    protected int code;
+    protected String code;
     protected String name;
     protected String dayBirth;
     protected String gender;
@@ -12,7 +12,7 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(int code, String name, String dayBirth, String gender, int idNumber, int phoneNumber, String email) {
+    public Person(String code, String name, String dayBirth, String gender, int idNumber, int phoneNumber, String email) {
         this.code = code;
         this.name = name;
         this.dayBirth = dayBirth;
@@ -22,11 +22,11 @@ public abstract class Person {
         this.email = email;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

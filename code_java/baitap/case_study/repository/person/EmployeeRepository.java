@@ -34,7 +34,7 @@ public class EmployeeRepository implements IEmployeeRepository {
         List<String> list = ReadAndWrite.readFile("case_study\\util\\file\\employee.csv");
         for (int i = 0; i < list.size(); i++) {
             String arr[] = list.get(i).split(",");
-            listE.add(new Employee(Integer.parseInt(arr[0]), arr[1], arr[2], arr[3], Integer.parseInt(arr[4]), Integer.parseInt(arr[5]), arr[6], arr[7], arr[8], Integer.parseInt(arr[9])));
+            listE.add(new Employee(arr[0], arr[1], arr[2], arr[3], Integer.parseInt(arr[4]), Integer.parseInt(arr[5]), arr[6], arr[7], arr[8], Integer.parseInt(arr[9])));
         }
         return listE;
     }

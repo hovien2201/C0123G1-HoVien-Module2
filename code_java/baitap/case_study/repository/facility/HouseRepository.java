@@ -14,16 +14,8 @@ public class HouseRepository implements IHouseRepository {
 
     @Override
     public void add(House house, Integer value) {
-        List<String> stringList = ReadAndWrite.readFile(PATH);
-        String str = house.getInfoToCSV();
-        stringList.add(str + "," + value);
-        for (int i = 0; i < stringList.size(); i++) {
-            if (i == 0) {
-                ReadAndWrite.writeFile(PATH, stringList.get(i), false);
-            } else {
-                ReadAndWrite.writeFile(PATH, stringList.get(i), true);
-            }
-        }
+        String str = house.getInfoToCSV() + "," + value;
+        ReadAndWrite.writeFile(PATH, str, true);
     }
 
     @Override

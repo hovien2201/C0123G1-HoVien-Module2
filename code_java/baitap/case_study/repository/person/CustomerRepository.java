@@ -36,7 +36,7 @@ public class CustomerRepository implements ICustomerRepository {
         List<String> listStr = ReadAndWrite.readFile(PATH);
         for (int i = 0; i < listStr.size(); i++) {
             String arr[] = listStr.get(i).split(",");
-            list.add(new Customer(Integer.parseInt(arr[0]), arr[1], arr[2], arr[3], Integer.parseInt(arr[4]), Integer.parseInt(arr[5]), arr[6], arr[7], arr[8]));
+            list.add(new Customer(arr[0], arr[1], arr[2], arr[3], Integer.parseInt(arr[4]), Integer.parseInt(arr[5]), arr[6], arr[7], arr[8]));
         }
         return list;
     }

@@ -2,7 +2,6 @@ package case_study.repository.interface_repository;
 
 import case_study.model.facility.Room;
 
-import java.util.List;
 import java.util.Map;
 
 public interface IRoomRepository {

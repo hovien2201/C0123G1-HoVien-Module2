@@ -17,28 +17,31 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
     static List<Customer> customerList = new LinkedList<>();
 
     public void read() {
-        customerList=customerRepository.read();
+        customerList = customerRepository.read();
     }
-
+    public List<Customer> returnList(){
+        read();
+        return customerList;
+    }
     @Override
     public void add() {
         read();
-        System.out.println("Mã khách hàng");
+        System.out.println("Customer's code");
         boolean check;
-        int code;
+        String code;
         do {
             check = false;
-            code = Integer.parseInt(scanner.nextLine());
+            code = scanner.nextLine();
             for (int i = 0; i < customerList.size(); i++) {
                 if (code == customerList.get(i).getCode()) {
-                    System.out.println("Da co nhap lai");
+                    System.out.println("You entered it wrong, please re-enter");
                     check = true;
                 }
             }
         } while (check);
-        System.out.println("Họ tên");
+        System.out.println("Full name");
         String name = scanner.nextLine();
-        System.out.println("Ngày sinh(dd/mm/yyyy)");
+        System.out.println("Day birth(dd/mm/yyyy)");
         String dayBirth = null;
         boolean flag1 = true;
         do {
@@ -46,27 +49,27 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
             if (CheckRegexAll.checkDayBirth(dayBirth)) {
                 flag1 = false;
             } else {
-                System.out.println("moi nhap lai");
+                System.out.println("You entered it wrong, please re-enter");
             }
         } while (flag1);
-        System.out.println("Giới tính");
+        System.out.println("Gender");
         String gender = scanner.nextLine();
-        System.out.println("Số CMND");
+        System.out.println("ID Number");
         int idNumber = Integer.parseInt(scanner.nextLine());
-        System.out.println("Số Điện Thoại");
+        System.out.println("Number phone");
         int numberPhone = Integer.parseInt(scanner.nextLine());
         System.out.println("Email");
         String email = scanner.nextLine();
-        System.out.println("Loại khách");
+        System.out.println("Type of guest");
         boolean flag = true;
         String typeOfGuest = "";
         do {
-            System.out.println("Loại khách:\n" +
+            System.out.print(
                     "1. Diamond\n" +
-                    "2. Platinium\n" +
-                    "3. Gold\n" +
-                    "4. Silver\n" +
-                    "5. Member");
+                            "2. Platinium\n" +
+                            "3. Gold\n" +
+                            "4. Silver\n" +
+                            "5. Member");
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
@@ -90,29 +93,29 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
                     flag = false;
                     break;
                 default:
-                    System.out.println("Bạn đã nhập sai số mời nhập lại");
+                    System.out.println("You entered it wrong, please re-enter");
             }
         } while (flag);
-        System.out.println("Địa chỉ");
+        System.out.println("Address");
         String address = scanner.nextLine();
         Customer customer = new Customer(code, name, dayBirth, gender, idNumber, numberPhone, email, typeOfGuest, address);
         customerRepository.add(customer);
-        System.out.println("Them thanh cong");
+        System.out.println("new added Success");
     }
 
     @Override
     public void edit() {
-        System.out.println("Nhap ten muon sua");
+        System.out.println("Enter the name you want to edit");
         String name = scanner.nextLine();
         boolean flag = true;
         for (int i = 0; i < customerList.size(); i++) {
             if (name.equals(customerList.get(i).getName())) {
-                System.out.println("thong tin khach hang ban muon sua: " + customerList.get(i));
-                System.out.print("Mã khách hàng");
-                int code = Integer.parseInt(scanner.nextLine());
-                System.out.print("Họ tên");
+                System.out.println("Information customers want to edit: " + customerList.get(i));
+                System.out.print("Customer's code");
+                String code = scanner.nextLine();
+                System.out.print("Full name");
                 String name1 = scanner.nextLine();
-                System.out.print("Ngày sinh(dd/mm/yyyy)");
+                System.out.print("Day birth(dd/mm/yyyy)");
                 String dayBirth = null;
                 boolean flag3 = true;
                 do {
@@ -120,27 +123,27 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
                     if (CheckRegexAll.checkDayBirth(dayBirth)) {
                         flag3 = false;
                     } else {
-                        System.out.println("Moi nhap lai");
+                        System.out.println("You entered it wrong, please re-enter");
                     }
                 } while (flag3);
-                System.out.print("Giới tính");
+                System.out.print("Gender");
                 String gender = scanner.nextLine();
-                System.out.print("Số CMND");
+                System.out.print("ID number");
                 int idNumber = Integer.parseInt(scanner.nextLine());
-                System.out.print("Số Điện Thoại");
+                System.out.print("Number phone");
                 int numberPhone = Integer.parseInt(scanner.nextLine());
                 System.out.print("Email");
                 String email = scanner.nextLine();
-                System.out.print("Loại khách");
+                System.out.print("Type of guest");
                 boolean flag1 = true;
                 String typeOfGuest = "";
                 do {
-                    System.out.println("Loại khách:\n" +
+                    System.out.println(
                             "1. Diamond\n" +
-                            "2. Platinium\n" +
-                            "3. Gold\n" +
-                            "4. Silver\n" +
-                            "5. Member");
+                                    "2. Platinium\n" +
+                                    "3. Gold\n" +
+                                    "4. Silver\n" +
+                                    "5. Member");
                     System.out.print("select function:");
                     String choice = scanner.nextLine();
                     switch (choice) {
@@ -165,19 +168,19 @@ public class CustomerService implements IAddService, IDisplayService, IEditServi
                             flag1 = false;
                             break;
                         default:
-                            System.out.println("Bạn đã nhập sai số mời nhập lại");
+                            System.out.println("You entered it wrong, please re-enter\n");
                     }
                 } while (flag1);
-                System.out.print("Địa chỉ");
+                System.out.print("Address");
                 String address = scanner.nextLine();
                 Customer customer = new Customer(code, name1, dayBirth, gender, idNumber, numberPhone, email, typeOfGuest, address);
                 customerRepository.edit(customer, i);
-                System.out.println("Sua thanh cong");
+                System.out.println("Successful fix");
                 flag = false;
             }
         }
         if (flag) {
-            System.out.println("khong co trong danh sach");
+            System.out.println("not in the list");
         }
     }
 

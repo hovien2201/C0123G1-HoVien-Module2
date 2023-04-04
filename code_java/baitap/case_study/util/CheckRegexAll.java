@@ -40,4 +40,13 @@ public class CheckRegexAll {
         String regex = "/^((0[1-9])|([1-2][0-9])|3[0-1])\\/((0[0-9])||1[0-2])\\/(19((2[4-9])||([3-9][0-9]))||(200[0-5]))$/gm";
         return (str.matches(regex));
     }
+
+    public static boolean checkDayStartAndEnd(String str) {
+        String regex = "^((0[1-9])||([1-2][0-9])||(3[0-1]))\\/((0[1-9])||(1[0-2]))\\/(20(([0-1][0-9])||(2[0-3])))$";
+        if (str.matches(regex)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

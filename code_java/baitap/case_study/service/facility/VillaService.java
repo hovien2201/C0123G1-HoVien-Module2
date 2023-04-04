@@ -19,7 +19,7 @@ public class VillaService implements IAddService, IReadVilla {
     @Override
     public void add() {
         readVilla();
-        System.out.println("Nhap ma dich vu(SVVL-XXXX)");
+        System.out.println("Service's code(SVVL-XXXX)");
         boolean flag1 = true;
         String id = null;
         do {
@@ -27,10 +27,10 @@ public class VillaService implements IAddService, IReadVilla {
             if (CheckRegexAll.checkIdVilla(id)) {
                 flag1 = false;
             } else {
-                System.out.println("Moi nhap lai");
+                System.out.println("You entered it wrong, please re-enter");
             }
         } while (flag1);
-        System.out.println("Tên dịch vụ (Viet hoa dau tu)");
+        System.out.println("Service name (Capitalize first letter");
         boolean flag2 = true;
         String nameService = null;
         do {
@@ -38,10 +38,10 @@ public class VillaService implements IAddService, IReadVilla {
             if (CheckRegexAll.checkNameAll(nameService)) {
                 flag2 = false;
             } else {
-                System.out.println("Moi nhap lai");
+                System.out.println("You entered it wrong, please re-enter");
             }
         } while (flag2);
-        System.out.println("Diện tích sử dụng (m2)");
+        System.out.println("Usable area (m2)");
         String area = null;
         boolean flag3 = true;
         do {
@@ -49,10 +49,10 @@ public class VillaService implements IAddService, IReadVilla {
             if (CheckRegexAll.checkArea(area)) {
                 flag3 = false;
             } else {
-                System.out.println("Moi nhap lai");
+                System.out.println("You entered it wrong, please re-enter");
             }
         } while (flag3);
-        System.out.println("Chi phí thuê");
+        System.out.println("Rental costs");
         String price = null;
         boolean flag4 = true;
         do {
@@ -60,10 +60,10 @@ public class VillaService implements IAddService, IReadVilla {
             if (CheckRegexAll.checkPriceAndNumberOfFloors(price)) {
                 flag4 = false;
             } else {
-                System.out.println("Moi nhap lai");
+                System.out.println("You entered it wrong, please re-enter");
             }
         } while (flag4);
-        System.out.println("Số lượng người tối đa");
+        System.out.println("Maximum number of people");
         String numberHumanMax = null;
         boolean flag7 = true;
         do {
@@ -71,47 +71,47 @@ public class VillaService implements IAddService, IReadVilla {
             if (CheckRegexAll.checkNumberHumanMax(numberHumanMax)) {
                 flag7 = false;
             } else {
-                System.out.println("Moi nhap lai");
+                System.out.println("You entered it wrong, please re-enter");
             }
         } while (flag7);
-        System.out.println("Kiểu thuê");
+        System.out.println("rental type");
         String rentalType = null;
         boolean flag = true;
         do {
-            System.out.println("1.năm\n" +
-                    "2.tháng\n" +
-                    "3.ngày\n" +
-                    "4.giờ");
+            System.out.println("1.Year\n" +
+                    "2.Month\n" +
+                    "3.Day\n" +
+                    "4.Hour");
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    System.out.println("Nhap theo nam");
-                    rentalType = scanner.nextLine() + "Nam";
+                    System.out.println("Year");
+                    rentalType = scanner.nextLine() + "Year";
                     flag = false;
                     break;
                 case "2":
-                    System.out.println("Nhap theo thang");
-                    rentalType = scanner.nextLine() + "Thang";
+                    System.out.println("Month");
+                    rentalType = scanner.nextLine() + "Month";
                     flag = false;
                     break;
                 case "3":
-                    System.out.println("Nhap theo ngay");
-                    rentalType = scanner.nextLine() + "Ngay";
+                    System.out.println("Day");
+                    rentalType = scanner.nextLine() + "Day";
                     flag = false;
                     break;
                 case "4":
-                    System.out.println("Nhap theo gio");
-                    rentalType = scanner.nextLine() + "Gio";
+                    System.out.println("Hour");
+                    rentalType = scanner.nextLine() + "Hour";
                     flag = false;
                     break;
                 default:
-                    System.out.println("Nhap sai moi nhap lai");
+                    System.out.println("You entered it wrong, please re-enter");
             }
         } while (flag);
 
-        System.out.println("Tiêu chuẩn phòng");
+        System.out.println("Room standard");
         String roomStandard = scanner.nextLine();
-        System.out.println("Diện tích hồ bơi");
+        System.out.println("Pool area");
         String areaPool = null;
         boolean flag5 = true;
         do {
@@ -119,10 +119,10 @@ public class VillaService implements IAddService, IReadVilla {
             if (CheckRegexAll.checkArea(areaPool)) {
                 flag5 = false;
             } else {
-                System.out.println("Moi nhap lai");
+                System.out.println("You entered it wrong, please re-enter");
             }
         } while (flag5);
-        System.out.println("Số tầng");
+        System.out.println("number of floors");
         String numberOfFloors = null;
         boolean flag6 = true;
         do {
@@ -130,12 +130,11 @@ public class VillaService implements IAddService, IReadVilla {
             if (CheckRegexAll.checkPriceAndNumberOfFloors(numberOfFloors)) {
                 flag6 = false;
             } else {
-                System.out.println("Moi nhap lai");
+                System.out.println("You entered it wrong, please re-enter");
             }
         } while (flag6);
         Villa villa = new Villa(id, nameService, area, price, numberHumanMax, rentalType, roomStandard, areaPool, numberOfFloors);
         Integer value = 0;
-        readVilla();
         villaServiceMap.put(villa, value);
         villaRepository.add(villa, value);
     }

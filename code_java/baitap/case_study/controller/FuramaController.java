@@ -33,9 +33,9 @@ public class FuramaController {
                     "5.\tPromotion Management\n" +
                     "6.\tExit\n");
             System.out.print("select function:");
-            int choice = Integer.parseInt(scanner.nextLine());
+            String choice = scanner.nextLine();
             switch (choice) {
-                case 1:
+                case "1":
                     System.out.println("------------------Employee Management-----------------");
                     boolean flag1 = true;
                     do {
@@ -65,7 +65,7 @@ public class FuramaController {
                         }
                     } while (flag1);
                     break;
-                case 2:
+                case "2":
                     System.out.println("----------------Customer Management-----------------");
                     boolean flag2 = true;
                     do {
@@ -95,7 +95,7 @@ public class FuramaController {
                         }
                     } while (flag2);
                     break;
-                case 3:
+                case "3":
                     System.out.println("-----------------Facility Management----------------");
                     boolean flag3 = true;
                     do {
@@ -156,12 +156,10 @@ public class FuramaController {
                         }
                     } while (flag3);
                     break;
-                case 4:
+                case "4":
                     System.out.println("------------------Booking Management-----------------");
                     boolean flag4=true;
                     do {
-                        facilityService.display();
-                        customerService.display();
                         System.out.println("Function selection:\n" +
                                 "1.\tAdd new booking\n" +
                                 "2.\tDisplay list booking\n" +
@@ -173,14 +171,35 @@ public class FuramaController {
                         String choice4 = scanner.nextLine();
                         switch (choice4){
                             case "1":
+                                System.out.println("-------------------------------------customer information-------------------------------------");
+                                customerService.display();
+                                System.out.println();
+                                System.out.println("-------------------------------------facility information-------------------------------------");
+                                facilityService.display();
                                 bookingService.add();
                                 break;
                             case "2":
                                 bookingService.display();
+                                break;
+                            case "3":
+                                contractService.add();
+                                break;
+                            case "4":
+                                contractService.display();
+                                break;
+                            case "5":
+                                contractService.edit();
+                                break;
+                            case "6":
+                                System.out.println("back to main menu");
+                                flag4=false;
+                                break;
+                            default:
+                                System.out.println("Enter the wrong number, please re-enter");
                         }
                     }while (flag4);
                     break;
-                case 5:
+                case "5":
                     System.out.println("-------------------Promotion Management---------------------");
                     System.out.println("Function selection:\n" +
                             "1.\tDisplay list customers use service\n" +
@@ -188,7 +207,7 @@ public class FuramaController {
                             "3.\tReturn main menu\n");
                     System.out.print("select function:");
                     break;
-                case 6:
+                case "6":
                     System.out.println("You escaped");
                     flag = false;
                     break;

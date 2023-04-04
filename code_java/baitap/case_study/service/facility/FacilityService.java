@@ -61,6 +61,10 @@ public class FacilityService implements IAddService, IDisplayService, IDisplayMa
             System.out.println(x + " ,value:" + facilityIntegerMap.get(x));
         }
     }
+    public Map<Facility,Integer> returnMap(){
+        read();
+        return facilityIntegerMap;
+    }
 
     @Override
     public void displayMaintenance() {
