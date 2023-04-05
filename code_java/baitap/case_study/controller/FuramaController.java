@@ -2,6 +2,7 @@ package case_study.controller;
 
 import case_study.service.BookingService;
 import case_study.service.ContractService;
+import case_study.service.PromotionService;
 import case_study.service.facility.FacilityService;
 import case_study.service.facility.HouseService;
 import case_study.service.facility.RoomService;
@@ -22,6 +23,7 @@ public class FuramaController {
         RoomService roomService = new RoomService();
         BookingService bookingService=new BookingService();
         ContractService contractService=new ContractService();
+        PromotionService promotionService=new PromotionService();
         boolean flag = true;
         do {
             System.out.println("----------------FURAMA-----------------");
@@ -48,12 +50,15 @@ public class FuramaController {
                         String choice1 = scanner.nextLine();
                         switch (choice1) {
                             case "1":
+                                System.out.println("------------------Employee Display-----------------");
                                 employeeService.display();
                                 break;
                             case "2":
+                                System.out.println("------------------Employee Add-----------------");
                                 employeeService.add();
                                 break;
                             case "3":
+                                System.out.println("------------------Employee Edit-----------------");
                                 employeeService.edit();
                                 break;
                             case "4":
@@ -78,12 +83,15 @@ public class FuramaController {
                         String choice2 = scanner.nextLine();
                         switch (choice2) {
                             case "1":
+                                System.out.println("----------------Customer Display-----------------");
                                 customerService.display();
                                 break;
                             case "2":
+                                System.out.println("----------------Customer Add-----------------");
                                 customerService.add();
                                 break;
                             case "3":
+                                System.out.println("----------------Customer Edit----------------");
                                 customerService.edit();
                                 break;
                             case "4":
@@ -108,43 +116,15 @@ public class FuramaController {
                         String choice2 = scanner.nextLine();
                         switch (choice2) {
                             case "1":
+                                System.out.println("-----------------Facility Display----------------");
                                 facilityService.display();
                                 break;
                             case "2":
+                                System.out.println("-----------------Facility Add----------------");
                                 facilityService.add();
-                                boolean flag4 = true;
-                                do {
-                                    System.out.println("Function selection:\n"+
-                                            "1.\tAdd New Villa\n" +
-                                            "2.\tAdd New House\n" +
-                                            "3.\tAdd New Room\n" +
-                                            "4.\tBack to menu\n");
-                                    System.out.print("select function:");
-                                    String choice3 = scanner.nextLine();
-                                    switch (choice3) {
-                                        case "1":
-                                            villaService.add();
-                                            flag4 = false;
-                                            break;
-                                        case "2":
-                                            houseService.add();
-                                            flag4 = false;
-                                            break;
-                                        case "3":
-                                            roomService.add();
-                                            facilityService.add();
-                                            flag4 = false;
-                                            break;
-                                        case "4":
-                                            System.out.println("back to main menu");
-                                            flag4 = false;
-                                            break;
-                                        default:
-                                            System.out.println("Enter the wrong number, please re-enter");
-                                    }
-                                } while (flag4);
                                 break;
                             case "3":
+                                System.out.println("-----------------Facility DisplayMaintenance----------------");
                                 facilityService.displayMaintenance();
                                 break;
                             case "4":
@@ -157,9 +137,9 @@ public class FuramaController {
                     } while (flag3);
                     break;
                 case "4":
-                    System.out.println("------------------Booking Management-----------------");
                     boolean flag4=true;
                     do {
+                        System.out.println("------------------Booking Management-----------------");
                         System.out.println("Function selection:\n" +
                                 "1.\tAdd new booking\n" +
                                 "2.\tDisplay list booking\n" +
@@ -176,18 +156,27 @@ public class FuramaController {
                                 System.out.println();
                                 System.out.println("-------------------------------------facility information-------------------------------------");
                                 facilityService.display();
+                                System.out.println("-------------------------------------Booking Add-------------------------------------");
                                 bookingService.add();
                                 break;
                             case "2":
+                                System.out.println("-------------------------------------Booking Display-------------------------------------");
                                 bookingService.display();
                                 break;
                             case "3":
+                                System.out.println("-------------------------------------customer information-------------------------------------");
+                                customerService.display();
+                                System.out.println("-------------------------------------Booking Display-------------------------------------");
+                                bookingService.display();
+                                System.out.println("-------------------------------------Contract Add-------------------------------------");
                                 contractService.add();
                                 break;
                             case "4":
+                                System.out.println("-------------------------------------Contract Display------------------------------------");
                                 contractService.display();
                                 break;
                             case "5":
+                                System.out.println("-------------------------------------Contract Edit-------------------------------------");
                                 contractService.edit();
                                 break;
                             case "6":
@@ -200,12 +189,32 @@ public class FuramaController {
                     }while (flag4);
                     break;
                 case "5":
-                    System.out.println("-------------------Promotion Management---------------------");
-                    System.out.println("Function selection:\n" +
-                            "1.\tDisplay list customers use service\n" +
-                            "2.\tDisplay list customers get voucher\n" +
-                            "3.\tReturn main menu\n");
-                    System.out.print("select function:");
+                    boolean flag5=true;
+                    do {
+                        System.out.println("-------------------Promotion Management---------------------");
+                        System.out.println("Function selection:\n" +
+                                "1.\tDisplay list customers use service\n" +
+                                "2.\tDisplay list customers get voucher\n" +
+                                "3.\tReturn main menu\n");
+                        System.out.print("select function:");
+                        String choice4=scanner.nextLine();
+                        switch (choice4){
+                            case "1":
+                                System.out.println("-----------------------Display list customers use service-----------------------");
+                                promotionService.displayListUse();
+                                break;
+                            case "2":
+                                System.out.println("-----------------------Display list customers get voucher--------------------------");
+                                break;
+                            case "3":
+                                System.out.println("Return main menu!!");
+                                flag5=false;
+                                break;
+                            default:
+                                System.out.println("Enter the wrong number, please re-enter");
+                        }
+                    }while (flag5);
+
                     break;
                 case "6":
                     System.out.println("You escaped");

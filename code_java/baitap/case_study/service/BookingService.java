@@ -5,16 +5,13 @@ import case_study.model.facility.Facility;
 import case_study.model.person.Customer;
 import case_study.repository.BookingRepository;
 import case_study.service.facility.FacilityService;
-import case_study.service.interface_service.IAddService;
-import case_study.service.interface_service.IDisplayService;
-import case_study.service.interface_service.IEditService;
-import case_study.service.interface_service.IRead;
+import case_study.service.interface_service.*;
 import case_study.service.person.CustomerService;
 import case_study.util.CheckRegexAll;
 
 import java.util.*;
 
-public class BookingService implements IAddService, IDisplayService, IEditService, IRead {
+public class BookingService implements IAddService, IDisplayService, IRead , IReturnBooking {
     Scanner scanner = new Scanner(System.in);
     TreeSet<Booking> bookingTreeSet = new TreeSet<>();
     BookingRepository bookingRepository = new BookingRepository();
@@ -26,7 +23,7 @@ public class BookingService implements IAddService, IDisplayService, IEditServic
 
     @Override
     public void add() {
-        System.out.println("------------------add booking---------------------");
+        read();
         System.out.println("Code client");
         String codeClient = "";
         boolean flag = true;
@@ -59,14 +56,18 @@ public class BookingService implements IAddService, IDisplayService, IEditServic
             }
         } while (flag1);
         System.out.println("Code booking");
-        String codeBooking = scanner.nextLine();
-//        boolean flag3=true;
-//        do {
-//            codeBooking=scanner.nextLine();
-//            for (int i = 0; i < bookingTreeSet.size(); i++) {
-//                if (bookingTreeSet.contains(codeBooking))
-//            }
-//        }while (flag3);
+        String codeBooking = "";
+        boolean flag5 ;
+        do {
+            flag5=false;
+            codeBooking = scanner.nextLine();
+            for (Booking booking : bookingTreeSet) {
+                if (codeBooking.equals(booking.getCodeBooking())) {
+                    flag5 = true;
+                    System.out.println("You entered it wrong, please re-enter");
+                }
+            }
+        } while (flag5);
         System.out.println("Day start");
         String dayStart = "";
         boolean flag2 = true;
@@ -95,12 +96,10 @@ public class BookingService implements IAddService, IDisplayService, IEditServic
         String typeOfService = scanner.nextLine();
         Booking booking = new Booking(codeClient, codeService, codeBooking, dayStart, dayEnd, nameService, typeOfService);
         bookingRepository.add(booking);
+        bookingRepository.countValue(codeService);
+        System.out.println("successfully added new");
     }
 
-    @Override
-    public void edit() {
-
-    }
 
     @Override
     public void display() {
@@ -111,5 +110,11 @@ public class BookingService implements IAddService, IDisplayService, IEditServic
     @Override
     public void read() {
         bookingTreeSet = bookingRepository.read();
+    }
+
+    @Override
+    public TreeSet<Booking> returnBooking() {
+        read();
+        return bookingTreeSet;
     }
 }

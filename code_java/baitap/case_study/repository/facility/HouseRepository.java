@@ -5,9 +5,7 @@ import case_study.model.facility.House;
 import case_study.repository.interface_repository.IHouseRepository;
 import case_study.util.read_wirte.ReadAndWrite;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class HouseRepository implements IHouseRepository {
     private final String PATH = "case_study/util/file/house.csv";
@@ -29,4 +27,5 @@ public class HouseRepository implements IHouseRepository {
         }
         return houseIntegerMap;
     }
+
 }

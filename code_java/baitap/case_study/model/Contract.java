@@ -1,16 +1,16 @@
 package case_study.model;
 
-public class Contract {
+public class Contract implements Comparable<Contract>{
     private int numberContract;
-    private int codeBooking;
+    private String codeBooking;
     private int advanceDepositAmount;
     private int totalPaymentAmount;
-    private int codeClient;
+    private String codeClient;
 
     public Contract() {
     }
 
-    public Contract(int numberContract, int codeBooking, int advanceDepositAmount, int totalPaymentAmount, int codeClient) {
+    public Contract(int numberContract, String codeBooking, int advanceDepositAmount, int totalPaymentAmount, String codeClient) {
         this.numberContract = numberContract;
         this.codeBooking = codeBooking;
         this.advanceDepositAmount = advanceDepositAmount;
@@ -26,11 +26,11 @@ public class Contract {
         this.numberContract = numberContract;
     }
 
-    public int getCodeBooking() {
+    public String getCodeBooking() {
         return codeBooking;
     }
 
-    public void setCodeBooking(int codeBooking) {
+    public void setCodeBooking(String codeBooking) {
         this.codeBooking = codeBooking;
     }
 
@@ -50,11 +50,11 @@ public class Contract {
         this.totalPaymentAmount = totalPaymentAmount;
     }
 
-    public int getCodeClient() {
+    public String getCodeClient() {
         return codeClient;
     }
 
-    public void setCodeClient(int codeClient) {
+    public void setCodeClient(String codeClient) {
         this.codeClient = codeClient;
     }
 
@@ -66,6 +66,15 @@ public class Contract {
                 ", advanceDepositAmount=" + advanceDepositAmount +
                 ", totalPaymentAmount=" + totalPaymentAmount +
                 ", codeClient=" + codeClient +
-                '}';
+                '}'+"\n";
+    }
+
+    public String getInfoToCSV() {
+        return numberContract + "," + codeBooking + "," + advanceDepositAmount + "," + totalPaymentAmount + "," + codeClient;
+    }
+
+    @Override
+    public int compareTo(Contract o) {
+        return this.numberContract-o.numberContract;
     }
 }

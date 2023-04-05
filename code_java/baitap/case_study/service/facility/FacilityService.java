@@ -15,6 +15,8 @@ import java.util.*;
 public class FacilityService implements IAddService, IDisplayService, IDisplayMaintenance, IRead {
     static Integer valueRoom = 0;
     static Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
+    static Map<Facility, Integer> map = new LinkedHashMap<>();
+
     Scanner scanner = new Scanner(System.in);
     RoomService roomService = new RoomService();
     VillaService villaService = new VillaService();
@@ -32,14 +34,17 @@ public class FacilityService implements IAddService, IDisplayService, IDisplayMa
             String choice3 = scanner.nextLine();
             switch (choice3) {
                 case "1":
+                    System.out.println("-----------------Villa Add----------------");
                     villaService.add();
                     flag4 = false;
                     break;
                 case "2":
+                    System.out.println("-----------------House Add----------------");
                     houseService.add();
                     flag4 = false;
                     break;
                 case "3":
+                    System.out.println("-----------------Room Add----------------");
                     roomService.add();
                     flag4 = false;
                     break;
@@ -59,16 +64,30 @@ public class FacilityService implements IAddService, IDisplayService, IDisplayMa
         Set<Facility> set = facilityIntegerMap.keySet();
         for (Facility x : set) {
             System.out.println(x + " ,value:" + facilityIntegerMap.get(x));
+            if (facilityIntegerMap.get(x) > 4) {
+                map.put(x, facilityIntegerMap.get(x));
+            }
         }
     }
-    public Map<Facility,Integer> returnMap(){
+
+    public Map<Facility, Integer> returnMap() {
         read();
         return facilityIntegerMap;
     }
 
     @Override
     public void displayMaintenance() {
-
+        read();
+        Set<Facility> set = facilityIntegerMap.keySet();
+        for (Facility x : set) {
+            if (facilityIntegerMap.get(x) > 4) {
+                map.put(x, facilityIntegerMap.get(x));
+            }
+        }
+        Set<Facility> set1 = map.keySet();
+        for (Facility y : set1) {
+            System.out.println(y + " ,value:" + map.get(y));
+        }
     }
 
     @Override

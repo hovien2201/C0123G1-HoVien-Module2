@@ -1,7 +1,6 @@
 package case_study.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 public class Booking implements Comparable<Booking> {
@@ -92,7 +91,7 @@ public class Booking implements Comparable<Booking> {
                 ", dayEnd='" + dayEnd + '\'' +
                 ", nameService='" + nameService + '\'' +
                 ", typeOfService='" + typeOfService + '\'' +
-                '}';
+                '}' + "\n";
     }
 
     public String getInfoToCSV() {
@@ -101,10 +100,14 @@ public class Booking implements Comparable<Booking> {
 
     @Override
     public int compareTo(Booking o) {
-        if (this.dayStart.compareTo(o.dayStart) != 0) {
-            return this.dayStart.compareTo(o.dayStart);
+        if (this.dayStart.equals(o.dayStart)) {
+            Date dateEnd = new Date(this.getDayEnd());
+            Date dateEndO = new Date(o.getDayEnd());
+            return dateEndO.after(dateEnd) ? 1 : -1;
         } else {
-            return this.dayEnd.compareTo(o.dayEnd);
+            Date dateStart = new Date(this.getDayStart());
+            Date dateStartO = new Date(o.getDayStart());
+            return dateStartO.after(dateStart) ? 1 : -1;
         }
     }
 
