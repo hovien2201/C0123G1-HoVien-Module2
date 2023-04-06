@@ -21,9 +21,9 @@ public class FuramaController {
         HouseService houseService = new HouseService();
         VillaService villaService = new VillaService();
         RoomService roomService = new RoomService();
-        BookingService bookingService=new BookingService();
-        ContractService contractService=new ContractService();
-        PromotionService promotionService=new PromotionService();
+        BookingService bookingService = new BookingService();
+        ContractService contractService = new ContractService();
+        PromotionService promotionService = new PromotionService();
         boolean flag = true;
         do {
             System.out.println("----------------FURAMA-----------------");
@@ -137,7 +137,7 @@ public class FuramaController {
                     } while (flag3);
                     break;
                 case "4":
-                    boolean flag4=true;
+                    boolean flag4 = true;
                     do {
                         System.out.println("------------------Booking Management-----------------");
                         System.out.println("Function selection:\n" +
@@ -149,7 +149,7 @@ public class FuramaController {
                                 "6.\tReturn main menu\n");
                         System.out.print("select function:");
                         String choice4 = scanner.nextLine();
-                        switch (choice4){
+                        switch (choice4) {
                             case "1":
                                 System.out.println("-------------------------------------customer information-------------------------------------");
                                 customerService.display();
@@ -181,15 +181,15 @@ public class FuramaController {
                                 break;
                             case "6":
                                 System.out.println("back to main menu");
-                                flag4=false;
+                                flag4 = false;
                                 break;
                             default:
                                 System.out.println("Enter the wrong number, please re-enter");
                         }
-                    }while (flag4);
+                    } while (flag4);
                     break;
                 case "5":
-                    boolean flag5=true;
+                    boolean flag5 = true;
                     do {
                         System.out.println("-------------------Promotion Management---------------------");
                         System.out.println("Function selection:\n" +
@@ -197,23 +197,24 @@ public class FuramaController {
                                 "2.\tDisplay list customers get voucher\n" +
                                 "3.\tReturn main menu\n");
                         System.out.print("select function:");
-                        String choice4=scanner.nextLine();
-                        switch (choice4){
+                        String choice4 = scanner.nextLine();
+                        switch (choice4) {
                             case "1":
                                 System.out.println("-----------------------Display list customers use service-----------------------");
                                 promotionService.displayListUse();
                                 break;
                             case "2":
                                 System.out.println("-----------------------Display list customers get voucher--------------------------");
+                                promotionService.displayListVoucher();
                                 break;
                             case "3":
                                 System.out.println("Return main menu!!");
-                                flag5=false;
+                                flag5 = false;
                                 break;
                             default:
                                 System.out.println("Enter the wrong number, please re-enter");
                         }
-                    }while (flag5);
+                    } while (flag5);
 
                     break;
                 case "6":
